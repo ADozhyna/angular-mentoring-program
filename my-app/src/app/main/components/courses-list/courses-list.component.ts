@@ -41,4 +41,8 @@ export class CoursesListComponent implements OnInit {
     console.log(id);
   }
 
+  public onLoad() {
+    console.log('loading...');
+  }
+
 }

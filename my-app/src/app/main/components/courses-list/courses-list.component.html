@@ -3,4 +3,8 @@
         <button><i class="material-icons">add</i>Add course</button>
     </div>
     <app-course-item *ngFor="let course of coursesList" [course]="course" (remove)="onDelete($event)"></app-course-item>
+    <mat-card>
+        <button (click)="onLoad()">Load more</button>
+    </mat-card>
+
 </div>
