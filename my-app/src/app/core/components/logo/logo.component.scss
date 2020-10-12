@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    h1 {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: var(--header-text-color);
+        font-weight: bold;
+        padding: 20px 0 0 15px;
+    }
+}
