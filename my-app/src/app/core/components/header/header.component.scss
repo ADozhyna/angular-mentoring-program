@@ -1,0 +1,13 @@
+:host {
+    width: 100%;
+    .wrapper {
+        width: 100%;
+        background-color: var(--header-bg-color);
+    }
+    
+    .navigation {
+        max-width: 1110px;
+        width: 100%;
+        margin: 0 auto;   
+    }
+}

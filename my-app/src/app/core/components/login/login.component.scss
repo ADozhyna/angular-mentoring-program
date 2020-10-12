@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    img {
+        width: 20px;
+        height: auto;
+    }
+    button {
+        background-color: transparent;
+        border: none;
+        color: var(--header-text-color);
+        font-size: 14px;
+        line-height: 24px;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+    .login,
+    .logoff {
+        padding-left: 20px;
+    }
+}
