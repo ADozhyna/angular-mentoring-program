@@ -1,0 +1,28 @@
+.wrapper {
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    button {
+        background-color: var(--secondary-btn-color);
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        padding: 10px 25px;
+        margin: 0 0 18px 5px;
+        cursor: pointer;
+        transition: all .2s linear;
+
+        &:hover {
+            background-color: lighten( #3f51b5, 10%);
+        }
+    }
+}

@@ -1,7 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 :root {
     /* Header colors */
@@ -15,7 +12,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     /* footer */
     --footer-bg-color: #303240;
     --footer-text-color: #FFFFFF;
+
+    /* buttons */
+    --primary-btn-color:  #0079AD; 
+    --secondary-btn-color: #3f51b5;
   
     
   }
   
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.5em 0 0.5em 0;
+}
+
+

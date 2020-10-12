@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <form (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" (ngSubmit)="submit()">
+          <mat-label>Look for courses</mat-label>
+          <input matInput placeholder="Text to search" [(ngModel)]="inputValue" name="inputValue">
+        </mat-form-field>
+        <button type="submit">Search</button>
+      </form>
+</div>
+
+  
