@@ -1,0 +1,22 @@
+.wrapper {
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        button {
+            background-color: var(--secondary-btn-color);
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

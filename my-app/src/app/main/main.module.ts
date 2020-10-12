@@ -4,6 +4,8 @@ import { CoursesPageComponent } from './components/courses-page/courses-page.com
 import { MainRoutingModule } from './main-routing.module';
 import { SearchControlComponent } from './components/search-control/search-control.component';
 import { SharedModule } from '../shared/shared.module';
+import { CoursesListComponent } from './components/courses-list/courses-list.component';
+import { CourseItemComponent } from './components/course-item/course-item.component';
 
 
 
@@ -12,6 +14,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     CoursesPageComponent,
     SearchControlComponent,
+    CoursesListComponent,
+    CourseItemComponent,
   ],
   imports: [
     CommonModule,

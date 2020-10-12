@@ -4,7 +4,7 @@
     footer {
         width: 100%;
         background-color: var(--footer-bg-color);
-        position: fixed;
+        position: sticky;
         bottom: 0;
     }
     .wrapper {
