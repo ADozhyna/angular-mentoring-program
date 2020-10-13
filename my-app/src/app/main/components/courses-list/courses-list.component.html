@@ -4,7 +4,7 @@
     </div>
     <app-course-item *ngFor="let course of coursesList" [course]="course" (remove)="onDelete($event)"></app-course-item>
     <mat-card>
-        <button (click)="onLoad()">Load more</button>
+        <button class="load-button" (click)="onLoad()">Load more</button>
     </mat-card>
 
 </div>

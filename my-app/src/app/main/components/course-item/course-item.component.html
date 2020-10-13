@@ -1,4 +1,5 @@
 <div class="wrapper">
+  <ng-container *ngIf="course">
     <mat-card>
         <mat-card-title>{{ course.title }}</mat-card-title>
         <mat-card-subtitle>
@@ -8,9 +9,9 @@
         <mat-card-content> {{ course.description }}</mat-card-content>
         <mat-card-actions>
             <button><i class="material-icons">edit</i>Edit</button>
-            <button (click)="onRemove(course.id)"><i class="material-icons">delete</i>Delete</button>
+            <button class="delete-button" (click)="onRemove(course.id)"><i class="material-icons">delete</i>Delete</button>
         </mat-card-actions>
     </mat-card>
-
+  </ng-container>
 </div>
 
