@@ -30,6 +30,17 @@
         align-items: center;
     }
 
+    .mat-card-title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .mat-card-title .material-icons {
+        margin-left: 20px;
+        color: gold;
+    }
+
     p {
         display: flex;
         justify-content: flex-start;
@@ -38,5 +49,9 @@
         .material-icons {
             margin-right: 5px;
         }
+    }
+
+    .top {
+        background-color: rgb(240, 252, 213);
     }
 }

@@ -25,9 +25,9 @@ export class BorderColorDirective implements OnChanges {
     const days: number = Math.ceil(Math.abs(Date.now() - date.getTime()) / (1000 * 3600 * 24));
 
     if(days < 14) {
-      this.borderColor = 'green';
+      this.borderColor = '#bdee68';
     } else {
-      this.borderColor = 'blue';
+      this.borderColor = '#0079AD';
     }
 
     this.setBorder(this.borderColor)
