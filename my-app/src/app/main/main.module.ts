@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
 import { BorderColorDirective } from './directives/border-color.directive';
+import { DurationPipe } from './pipes/duration.pipe';
 
 
 
@@ -18,6 +19,7 @@ import { BorderColorDirective } from './directives/border-color.directive';
     CoursesListComponent,
     CourseItemComponent,
     BorderColorDirective,
+    DurationPipe,
   ],
   imports: [
     CommonModule,

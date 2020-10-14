@@ -3,7 +3,7 @@
     <mat-card [publicationDate]="publicationDate" appBorderColor [ngClass]="{top: course.top === true}">
         <mat-card-title>{{ course.title | uppercase}} <i class="material-icons" *ngIf="course.top">grade</i></mat-card-title>
         <mat-card-subtitle>
-            <p><i class="material-icons">access_time</i>{{ course.duration }}</p>
+            <p><i class="material-icons">access_time</i>{{ course.duration | duration }}</p>
             <p><i class="material-icons">date_range</i>{{ course.creationDate | date: 'd MMM, y' }}</p>
         </mat-card-subtitle>
         <mat-card-content> {{ course.description }}</mat-card-content>
