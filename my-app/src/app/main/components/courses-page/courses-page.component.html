@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <app-search-control></app-search-control>
-    <app-courses-list></app-courses-list>
+    <app-search-control (search)="onSearch($event)"></app-search-control>
+    <app-courses-list [searchString]="searchString"></app-courses-list>
 </div>
 
