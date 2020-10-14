@@ -6,6 +6,7 @@ import { SearchControlComponent } from './components/search-control/search-contr
 import { SharedModule } from '../shared/shared.module';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
+import { BorderColorDirective } from './directives/border-color.directive';
 
 
 
@@ -16,6 +17,7 @@ import { CourseItemComponent } from './components/course-item/course-item.compon
     SearchControlComponent,
     CoursesListComponent,
     CourseItemComponent,
+    BorderColorDirective,
   ],
   imports: [
     CommonModule,

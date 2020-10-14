@@ -1,10 +1,10 @@
-<div class="wrapper">
+<div class="wrapper" >
   <ng-container *ngIf="course">
-    <mat-card>
+    <mat-card [publicationDate]="publicationDate" appBorderColor>
         <mat-card-title>{{ course.title }}</mat-card-title>
         <mat-card-subtitle>
             <p><i class="material-icons">access_time</i>{{ course.duration }}</p>
-            <p><i class="material-icons">date_range</i>{{ course.creationDate | date: 'mediumDate' }}</p>
+            <p><i class="material-icons">date_range</i>{{ course.creationDate }}</p>
         </mat-card-subtitle>
         <mat-card-content> {{ course.description }}</mat-card-content>
         <mat-card-actions>
