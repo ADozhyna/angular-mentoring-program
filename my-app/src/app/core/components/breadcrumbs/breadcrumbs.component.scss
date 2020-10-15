@@ -1,11 +1,15 @@
 :host {
     width: 100%;
-    .breadcrumps-wrapper {
+    .breadcrumbs-wrapper {
+        width: 100%;
+        padding: 20px 0;
+        background-color: #fff;
+    }
+
+    .breadcrumbs-wrapper div {
         max-width: 1110px;
         width: 100%;
         margin: 0 auto;
-        padding: 20px 0;
-        background-color: #fff;
     }
     a {
         color: var(--project-text-color);
