@@ -26,27 +26,11 @@ describe('SearchControlComponent', () => {
   });
 
   it('should emit submit once clicked', () => {
-    const spy = spyOn(component, 'submit').and.callThrough();
+    const spy = spyOn(component, 'onSubmit').and.callThrough();
 
     fixture.debugElement.query(By.css('form')).triggerEventHandler('ngSubmit', null);
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
   });
-
-   it('should log message', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.inputValue = 'string';
-    component.submit();
-
-    expect(consoleSpy).toHaveBeenCalled();
-  });
-
-  it ('should not log message', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.inputValue = '';
-    component.submit();
-
-    expect(consoleSpy).isNot;
-  })
 });

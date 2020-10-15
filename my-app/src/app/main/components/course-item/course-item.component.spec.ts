@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { ICourse } from 'src/app/shared/models/course.model';
+import { DurationPipe } from '../../pipes/duration.pipe';
 
 import { CourseItemComponent } from './course-item.component';
 
@@ -9,7 +11,7 @@ import { CourseItemComponent } from './course-item.component';
             </app-course-item>`
 })
 class TestHostComponent {
-  public course = {id: 1, title: 'Some title', duration: 'duration', creationDate: new Date(), description: 'description'};
+  public course: ICourse = {id: 1, title: 'Some title', duration: 'duration', creationDate: '10/5/2020', description: 'description', top: false};
   public deletedCourseId: any;
 
   public onDelete(id: number) {
@@ -23,7 +25,7 @@ describe('CourseItemComponent', () => {
 
   beforeEach( async () => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, TestHostComponent]
+      declarations: [CourseItemComponent, TestHostComponent, DurationPipe]
     })
     .compileComponents();
   });
@@ -38,7 +40,7 @@ describe('CourseItemComponent', () => {
     const { debugElement } = fixture;
     const title = debugElement.query(By.css('mat-card-title')).nativeElement;
 
-    expect(title.textContent).toEqual(testHostComponent.course.title);
+    expect(title.textContent).toEqual(testHostComponent.course.title.toUpperCase());
    });
 
    it('should trigger delete event', () => {

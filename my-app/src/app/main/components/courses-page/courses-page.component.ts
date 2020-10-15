@@ -16,7 +16,6 @@ export class CoursesPageComponent implements OnInit {
 
   public onSearch(searchString: string) {
     this.searchString = searchString;
-    console.log(this.searchString);
   }
 
 }
