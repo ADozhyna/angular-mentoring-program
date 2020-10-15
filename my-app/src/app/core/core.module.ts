@@ -5,7 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
-import { BreadcrumpsComponent } from './components/breadcrumps/breadcrumps.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 
 
@@ -15,7 +15,7 @@ import { BreadcrumpsComponent } from './components/breadcrumps/breadcrumps.compo
     FooterComponent,
     LogoComponent,
     LoginComponent,
-    BreadcrumpsComponent
+    BreadcrumbsComponent
   ],
   imports: [
     CommonModule,
