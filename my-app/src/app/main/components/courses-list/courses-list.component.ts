@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, DoCheck, Input, OnInit, SimpleChange } from '@angular/core';
 import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
@@ -9,7 +9,7 @@ import { FilterPipe } from '../../pipes/filter.pipe';
   styleUrls: ['./courses-list.component.scss'],
   providers: [FilterPipe]
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent implements OnInit, DoCheck {
   public coursesList: ICourse[];
   @Input() public searchString: string;
 
@@ -19,15 +19,9 @@ export class CoursesListComponent implements OnInit {
     this.coursesList = this.coursesService.getList();
   }
 
-  public ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
-    if(changes.searchString.currentValue) {
-     this.coursesList = this.filterPipe.transform(this.coursesList, this.searchString);
-    }
-
-  }
-
   public ngDoCheck() {
     this.coursesList = this.coursesService.getList();
+    this.coursesList = this.filterPipe.transform(this.coursesList, this.searchString);
   }
 
   public onLoad() {

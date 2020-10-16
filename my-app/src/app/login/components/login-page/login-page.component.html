@@ -1,0 +1,17 @@
+<div class="form-wrapper">
+    <form fxLayout="column" fxLayoutAlign="flex-start flex-start" (ngSubmit)="loginService.loginUser()">
+        <p>Login</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" required [(ngModel)]="loginService.user.email" name="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="loginService.user.password" name="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <i class="material-icons">{{hide ? 'visibility_off' : 'visibility'}}</i>
+            </button>
+          </mat-form-field>
+          <button class="submit">Login</button>
+    </form>
+</div>

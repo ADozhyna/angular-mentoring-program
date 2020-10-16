@@ -13,11 +13,11 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     FooterComponent,
     LogoComponent,
     LoginComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     HeaderComponent,

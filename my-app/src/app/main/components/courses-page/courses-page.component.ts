@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/login/services/auth.service';
 
 @Component({
   selector: 'app-courses-page',
@@ -9,7 +10,7 @@ export class CoursesPageComponent implements OnInit {
 
   public searchString: string;
 
-  constructor() { }
+  constructor(private loginService: AuthService) { }
 
   public ngOnInit(): void {
   }

@@ -1,8 +1,8 @@
 <div class="wrapper">
     <div class="navigation" fxLayout="row" fxLayoutAlign="space-between center">
         <app-logo></app-logo>
-        <app-login></app-login>
+        <app-login *ngIf="loginService.isAuthenticated"></app-login>
     </div>
-    <app-breadcrumbs></app-breadcrumbs>
+    <app-breadcrumbs *ngIf="loginService.isAuthenticated"></app-breadcrumbs>
 </div>
 
