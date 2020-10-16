@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
 
 @Component({
@@ -8,11 +9,10 @@ import { ICourse } from 'src/app/shared/models/course.model';
 })
 export class CourseItemComponent implements OnInit {
   @Input() public course: ICourse;
-  @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
 
   public publicationDate: string;
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) { }
 
   public ngOnInit(): void {  
   }
@@ -22,7 +22,7 @@ export class CourseItemComponent implements OnInit {
   }
 
   public onRemove(id: number) {
-    this.remove.emit(id);
+    this.coursesService.removeItem(id);
   }
 
 }
