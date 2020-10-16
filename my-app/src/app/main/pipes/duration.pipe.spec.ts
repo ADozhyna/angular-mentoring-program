@@ -26,9 +26,9 @@ describe('duration pipe in component template', () => {
       fixture.detectChanges();
     });
 
-    it('#case-1 should contain "3h 00min"', () => {
+    it('#case-1 should contain "3h 0min"', () => {
       const el = fixture.debugElement.query(By.css('#case-1')).nativeElement;
-      expect(el.textContent).toBe('3h 00min');
+      expect(el.textContent).toBe('3h 0min');
     });
   
     it('#case-2 should contain "30min"', () => {
@@ -43,8 +43,8 @@ describe('DurationPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('transform "180m" to "3h 00min"', () => {
-    expect(pipe.transform('180m')).toBe('3h 00min');
+  it('transform "180m" to "3h 0min"', () => {
+    expect(pipe.transform('180m')).toBe('3h 0min');
   });
 
   it('transform "30m" to "30min"', () => {
