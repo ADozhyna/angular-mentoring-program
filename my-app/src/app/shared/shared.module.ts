@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog' 
 
 
 @NgModule({
@@ -17,8 +18,8 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    MatCardModule
-
+    MatCardModule,
+    MatDialogModule
   ],
   exports: [
     FlexLayoutModule,
@@ -26,7 +27,8 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }
