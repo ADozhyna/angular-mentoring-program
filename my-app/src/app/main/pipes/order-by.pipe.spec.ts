@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { HtmlAstPath } from '@angular/compiler';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { CourseItemComponent } from '../components/course-item/course-item.component';
@@ -8,7 +10,7 @@ import { OrderByPipe } from './order-by.pipe';
 
 describe('OrderByPipe', () => {
   it('create an instance', () => {
-    const pipe = new OrderByPipe();
+    const pipe: OrderByPipe = new OrderByPipe();
     expect(pipe).toBeTruthy();
   });
 });
@@ -31,7 +33,8 @@ describe('OrderBy pipe in template', () => {
 
   beforeEach( async () => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, TestHostComponent, OrderByPipe, DurationPipe]
+      declarations: [CourseItemComponent, TestHostComponent, OrderByPipe, DurationPipe ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
@@ -47,17 +50,17 @@ describe('OrderBy pipe in template', () => {
     testHostComponent.order = 'downDate';
     fixture.detectChanges();
 
-    const el = debugElement.query(By.css('.creation')).nativeElement;
+    const el: HTMLElement = debugElement.query(By.css('.creation')).nativeElement;
 
     expect(el.textContent).toEqual('5 Sep, 2020');
    });
 
-   it('should contain apropriate date with parameter order = "upDate"', () => {
+  it('should contain apropriate date with parameter order = "upDate"', () => {
     const { debugElement } = fixture;
     testHostComponent.order = 'upDate';
     fixture.detectChanges();
 
-    const el = debugElement.query(By.css('.creation')).nativeElement;
+    const el: HTMLElement = debugElement.query(By.css('.creation')).nativeElement;
 
     expect(el.textContent).toEqual('5 Oct, 2020');
    });

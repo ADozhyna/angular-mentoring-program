@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   public loginSrc: string = 'assets/login.svg';
-  public logOutSrc: string = 'assets/logout.svg'
+  public logOutSrc: string = 'assets/logout.svg';
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

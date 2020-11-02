@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { CourseItemComponent } from '../components/course-item/course-item.component';
@@ -7,7 +8,7 @@ import { DurationPipe } from './duration.pipe';
 import { FilterPipe } from './filter.pipe';
 
 describe('FilterPipe', () => {
-  const pipe = new FilterPipe();
+  const pipe: FilterPipe = new FilterPipe();
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
   });
@@ -28,7 +29,7 @@ describe('FilterPipe', () => {
     ];
 
     expect(pipe.transform(courses, 'angular')[0].title).toBe('Angular');
-  })
+  });
 });
 
 @Component({
@@ -49,7 +50,8 @@ describe('Filter pipe in template', () => {
 
   beforeEach( async () => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, TestHostComponent, FilterPipe, DurationPipe]
+      declarations: [CourseItemComponent, TestHostComponent, FilterPipe, DurationPipe ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
@@ -65,17 +67,17 @@ describe('Filter pipe in template', () => {
     testHostComponent.searchInput = 'angular';
     fixture.detectChanges();
 
-    const el = debugElement.query(By.css('mat-card-title')).nativeElement;
+    const el: HTMLElement = debugElement.query(By.css('mat-card-title')).nativeElement;
 
     expect(el.textContent.toLowerCase()).toEqual('angular');
    });
 
-   it('should return all items', () => {
+  it('should return all items', () => {
     const { debugElement } = fixture;
     testHostComponent.searchInput = '';
     fixture.detectChanges();
 
-    const length = debugElement.queryAll(By.css('mat-card')).length;
+    const length: number = debugElement.queryAll(By.css('mat-card')).length;
 
     expect(length).toEqual(testHostComponent.coursesList.length);
    });

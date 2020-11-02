@@ -28,24 +28,23 @@ describe('[appBorderColor] directive', () => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  })
+  });
 
   it('should add blue border', () => {
       component.publicationDate = '12/5/2019';
       fixture.detectChanges();
 
-      const el = fixture.debugElement.query(By.directive(BorderColorDirective)).nativeElement;
+      const el: HTMLElement = fixture.debugElement.query(By.directive(BorderColorDirective)).nativeElement;
 
-      expect(el.style.borderBottom).toBe('5px solid rgb(0, 121, 173)')
+      expect(el.style.borderBottom).toBe('5px solid rgb(0, 121, 173)');
     });
 
   it('should add green border', () => {
     component.publicationDate = '10/15/2020';
     fixture.detectChanges();
 
-    const el = fixture.debugElement.query(By.directive(BorderColorDirective)).nativeElement;
+    const el: HTMLElement = fixture.debugElement.query(By.directive(BorderColorDirective)).nativeElement;
 
-      expect(el.style.borderBottom).toBe('5px solid rgb(189, 238, 104)')
-  })
-    
+    expect(el.style.borderBottom).toBe('5px solid rgb(189, 238, 104)');
   });
+});

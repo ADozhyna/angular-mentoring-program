@@ -14,7 +14,7 @@ export class CoursesPageComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  public onSearch(searchString: string) {
+  public onSearch(searchString: string): void {
     this.searchString = searchString;
   }
 

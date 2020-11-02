@@ -26,7 +26,7 @@ describe('SearchControlComponent', () => {
   });
 
   it('should emit submit once clicked', () => {
-    const spy = spyOn(component, 'onSubmit').and.callThrough();
+    const spy: jasmine.Spy = spyOn(component, 'onSubmit').and.callThrough();
 
     fixture.debugElement.query(By.css('form')).triggerEventHandler('ngSubmit', null);
     fixture.detectChanges();

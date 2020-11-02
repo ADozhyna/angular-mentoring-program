@@ -14,14 +14,13 @@ export class CourseItemComponent implements OnInit {
 
   constructor() { }
 
-  public ngOnInit(): void {  
-  }
+  public ngOnInit(): void {}
 
-  public ngOnChanges() {
+  public ngOnChanges(): void {
     this.publicationDate = this.course.creationDate;
   }
 
-  public onRemove(id: number) {
+  public onRemove(id: number): void {
     this.remove.emit(id);
   }
 

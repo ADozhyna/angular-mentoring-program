@@ -4,7 +4,7 @@ export interface ICourse {
     creationDate: string;
     duration: string;
     description: string;
-    top: boolean
+    top: boolean;
 }
 
 export class Course implements ICourse {
@@ -13,7 +13,7 @@ export class Course implements ICourse {
     public creationDate: string;
     public duration: string;
     public description: string;
-    public top: boolean
+    public top: boolean;
     constructor(id: number, title: string, creationDate: string, duration: string, description: string, top: boolean) {
         this.id = id;
         this.title = title;

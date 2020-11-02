@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -18,7 +18,7 @@ import { CoursesPageComponent } from './courses-page.component';
 export class SearchControl {
   public inputValue: string = 'some value';
   @Output() public search: EventEmitter<string> = new EventEmitter<string>();
-  public onSubmit() {
+  public onSubmit(): void {
     this.search.emit(this.inputValue);
   }
 }
@@ -45,21 +45,21 @@ describe('CoursesPageComponent', () => {
   });
 
   it('should get search string', () => {
-    const childEl = fixture.debugElement.query(By.css('form'));
-    const spy = spyOn(component, 'onSearch');
+    const childEl: DebugElement = fixture.debugElement.query(By.css('form'));
+    const spy: jasmine.Spy = spyOn(component, 'onSearch');
     childEl.triggerEventHandler('ngSubmit', null);
 
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
-  })
+  });
 
   it('should apropriate searchItem property', () => {
-    const childEl = fixture.debugElement.query(By.css('form'));
+    const childEl: DebugElement = fixture.debugElement.query(By.css('form'));
     childEl.triggerEventHandler('ngSubmit', null);
 
     fixture.detectChanges();
 
     expect(component.searchString).toEqual('some value');
-  })
+  });
 });

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { DurationPipe } from '../../pipes/duration.pipe';
@@ -12,9 +13,9 @@ import { CourseItemComponent } from './course-item.component';
 })
 class TestHostComponent {
   public course: ICourse = {id: 1, title: 'Some title', duration: 'duration', creationDate: '10/5/2020', description: 'description', top: false};
-  public deletedCourseId: any;
+  public deletedCourseId: number;
 
-  public onDelete(id: number) {
+  public onDelete(id: number): void {
     this.deletedCourseId = id;
   }
 }
@@ -25,7 +26,8 @@ describe('CourseItemComponent', () => {
 
   beforeEach( async () => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, TestHostComponent, DurationPipe]
+      declarations: [CourseItemComponent, TestHostComponent, DurationPipe ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
@@ -38,20 +40,20 @@ describe('CourseItemComponent', () => {
 
   it('should contain apropriate title', () => {
     const { debugElement } = fixture;
-    const title = debugElement.query(By.css('mat-card-title')).nativeElement;
+    const title: HTMLElement = debugElement.query(By.css('mat-card-title')).nativeElement;
 
     expect(title.textContent).toEqual(testHostComponent.course.title.toUpperCase());
    });
 
-   it('should trigger delete event', () => {
-     const { debugElement } = fixture;
-     const deleteButton = debugElement.query(By.css('.delete-button'));
+  it('should trigger delete event', () => {
+    const { debugElement } = fixture;
+    const deleteButton: DebugElement = debugElement.query(By.css('.delete-button'));
 
-     deleteButton.triggerEventHandler('click', null);
+    deleteButton.triggerEventHandler('click', null);
 
-     expect(testHostComponent.deletedCourseId).toEqual(testHostComponent.course.id);
-   });
-})
+    expect(testHostComponent.deletedCourseId).toEqual(testHostComponent.course.id);
+  });
+});
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
@@ -59,7 +61,8 @@ describe('CourseItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent ]
+      declarations: [ CourseItemComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
