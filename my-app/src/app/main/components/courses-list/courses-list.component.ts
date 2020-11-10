@@ -15,16 +15,16 @@ export class CoursesListComponent implements OnInit, DoCheck {
 
   constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.coursesList = this.coursesService.getList();
   }
 
-  public ngDoCheck() {
+  public ngDoCheck(): void {
     this.coursesList = this.coursesService.getList();
     this.coursesList = this.filterPipe.transform(this.coursesList, this.searchString);
   }
 
-  public onLoad() {
+  public onLoad(): void {
     console.log('loading...');
   }
 
