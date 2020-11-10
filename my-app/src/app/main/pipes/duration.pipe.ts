@@ -14,7 +14,5 @@ export class DurationPipe implements PipeTransform {
     } else {
       return `${min}min`;
     }
-    
   }
-
 }
