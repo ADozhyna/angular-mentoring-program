@@ -7,32 +7,32 @@ export class BorderColorDirective implements OnChanges {
 
   private borderColor: string;
 
-  @Input() publicationDate: string;
+  @Input() public publicationDate: string;
 
-  constructor(private element: ElementRef, private renderer2: Renderer2) { 
+  constructor(private element: ElementRef, private renderer2: Renderer2) {
     this.setBorder(this.borderColor);
   }
 
-  private setBorder(color: string) {
+  private setBorder(color: string): void {
     this.renderer2.setStyle(this.element.nativeElement, 'border-bottom', `5px solid ${color}`);
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(): void {
     this.borderColor = 'black';
 
     const date: Date = new Date(this.publicationDate);
 
     const days: number = Math.ceil(Math.abs(Date.now() - date.getTime()) / (1000 * 3600 * 24));
 
-    if(days < 14) {
+    if (days < 14) {
       this.borderColor = '#bdee68';
     } else {
       this.borderColor = '#0079AD';
     }
 
-    this.setBorder(this.borderColor)
+    this.setBorder(this.borderColor);
 
-    console.log(date)
+    console.log(date);
   }
 
 }

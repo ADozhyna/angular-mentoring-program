@@ -7,7 +7,7 @@ import { DurationPipe } from './duration.pipe';
 import { FilterPipe } from './filter.pipe';
 
 describe('FilterPipe', () => {
-  const pipe = new FilterPipe();
+  const pipe: FilterPipe = new FilterPipe();
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
   });
@@ -28,7 +28,7 @@ describe('FilterPipe', () => {
     ];
 
     expect(pipe.transform(courses, 'angular')[0].title).toBe('Angular');
-  })
+  });
 });
 
 @Component({
@@ -65,18 +65,18 @@ describe('Filter pipe in template', () => {
     testHostComponent.searchInput = 'angular';
     fixture.detectChanges();
 
-    const el = debugElement.query(By.css('mat-card-title')).nativeElement;
+    const el: HTMLElement = debugElement.query(By.css('mat-card-title')).nativeElement;
 
     expect(el.textContent.toLowerCase()).toEqual('angular');
    });
 
-   it('should return all items', () => {
+  it('should return all items', () => {
     const { debugElement } = fixture;
     testHostComponent.searchInput = '';
     fixture.detectChanges();
 
-    const length = debugElement.queryAll(By.css('mat-card')).length;
+    const length: number = debugElement.queryAll(By.css('mat-card')).length;
 
     expect(length).toEqual(testHostComponent.coursesList.length);
-   });
+  });
 });

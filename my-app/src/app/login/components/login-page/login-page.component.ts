@@ -8,11 +8,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  public hide: boolean = true;
+  public isPasswordHidden: boolean = true;
+  public user: { email: string; password: string; token: string } = this.authService.user;
 
-  constructor(private loginService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  public login(): void {
+    this.authService.loginUser();
+  }
+
+  public ngOnInit(): void {
   }
 
 }

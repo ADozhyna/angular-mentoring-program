@@ -6,7 +6,7 @@ import { ICourse } from 'src/app/shared/models/course.model';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(courses: ICourse[], searchString: string): ICourse[] {
+  public transform(courses: ICourse[], searchString: string): ICourse[] {
     if (!courses || !searchString) {
       return courses;
     }
@@ -14,5 +14,4 @@ export class FilterPipe implements PipeTransform {
     return courses.filter((course) => course.title.toLowerCase().includes(searchString.toLowerCase()));
   }
 
-    
 }

@@ -11,7 +11,7 @@ import { CoursesListComponent } from './courses-list.component';
 export class CourseItemTestComponent {
   public id: number = 1;
   @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
-  public onRemove(id: number) {
+  public onRemove(id: number): void {
     this.remove.emit(id);
   }
 }
@@ -24,10 +24,10 @@ describe('CoursesListComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ CoursesListComponent, CourseItemTestComponent, OrderByPipe ]
     })
-    .compileComponents()
+    .compileComponents();
   });
 
- beforeEach(() => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(CoursesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -38,7 +38,7 @@ describe('CoursesListComponent', () => {
   });
 
   it('should emit onLoad once clicked', () => {
-    const spy = spyOn(component, 'onLoad');
+    const spy: jasmine.Spy<() => void> = spyOn(component, 'onLoad');
 
     fixture.debugElement.query(By.css('.load-button')).triggerEventHandler('click', null);
     fixture.detectChanges();
@@ -47,29 +47,12 @@ describe('CoursesListComponent', () => {
   });
 
   it('should log message', () => {
-    const consoleSpy = spyOn(console, 'log');
+    const consoleSpy: jasmine.Spy<{
+      (...data: any[]): void;
+      (message?: any, ...optionalParams: any[]): void;
+    }> = spyOn(console, 'log');
     component.onLoad();
 
     expect(consoleSpy).toHaveBeenCalled();
   });
-
-  it('should get course id from course-item component', () => {
-    const childEl: HTMLElement = fixture.debugElement.nativeElement.querySelector('.delete-button');
-    childEl.click();
-    const spy = spyOn(component, 'onDelete');
-    childEl.click();
-
-    fixture.detectChanges();
-
-    expect(spy).toHaveBeenCalled();
-  });
-
-  it('should log message after gitting course-item id', () => {
-    const consoleSpy = spyOn(console, 'log');
-    const fakeId: number = 1;
-    component.onDelete(fakeId);
-
-    expect(consoleSpy).toHaveBeenCalled();
-  });
-
 });

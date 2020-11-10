@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="loginService.isAuthenticated">
+<div class="wrapper" *ngIf="isLogin">
     <app-search-control (search)="onSearch($event)"></app-search-control>
     <app-courses-list [searchString]="searchString"></app-courses-list>
 </div>

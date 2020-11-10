@@ -7,6 +7,9 @@ import { AuthService } from './login/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private loginService: AuthService) {}
-  public title: string = 'my-app';
+
+  constructor(private authService: AuthService) {}
+  get isLogin(): boolean {
+    return this.authService.isAuthenticated;
+  }
 }

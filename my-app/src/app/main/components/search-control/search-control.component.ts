@@ -11,15 +11,13 @@ export class SearchControlComponent implements OnInit {
 
   @Output() public search: EventEmitter<string> = new EventEmitter<string>();
 
-
-
   constructor() { }
 
   public ngOnInit(): void {
   }
 
-  public onSubmit() {
-    if(this.inputValue) {
+  public onSubmit(): void {
+    if (this.inputValue) {
       this.search.emit(this.inputValue);
     }
   }

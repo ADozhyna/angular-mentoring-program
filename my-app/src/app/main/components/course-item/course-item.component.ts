@@ -16,14 +16,14 @@ export class CourseItemComponent implements OnInit {
 
   constructor(private coursesService: CoursesService, private dialog: MatDialog) { }
 
-  public ngOnInit(): void {  
+  public ngOnInit(): void {
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(): void {
     this.publicationDate = this.course.creationDate;
   }
 
-  public onRemove(id: number) {
+  public onRemove(id: number): void {
     this.dialog.open(ModalComponent, {
       width: '600px',
       data: id

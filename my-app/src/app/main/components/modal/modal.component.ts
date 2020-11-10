@@ -14,15 +14,15 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: number,
     private coursesService: CoursesService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  public remove() {
+  public remove(): void {
     this.coursesService.removeItem(this.data);
     this.dialogRef.close();
   }
 
-  public cancelRemove() {
+  public cancelRemove(): void {
     this.dialogRef.close();
   }
 

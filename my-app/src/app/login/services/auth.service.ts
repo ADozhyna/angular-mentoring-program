@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   public isAuthenticated: boolean = false;
-  public user = {
+
+  public user: { email: string; password: string; token: string } = {
     email: '',
     password: '',
     token: ''
@@ -18,7 +19,7 @@ export class AuthService {
     this.user.token = String(Math.random());
     this.isAuthenticated = true;
     localStorage.setItem('token', this.user.token);
-    console.log('logged is successfully')
+    console.log('logged is successfully');
   }
 
   public logout(): void {
@@ -29,7 +30,7 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
-  public getUserInfo() {
+  public getUserInfo(): string {
     return this.user.email;
   }
 }

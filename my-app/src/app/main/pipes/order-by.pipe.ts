@@ -6,7 +6,7 @@ import { ICourse } from 'src/app/shared/models/course.model';
 })
 export class OrderByPipe implements PipeTransform {
 
-  transform(courses: ICourse[], order: string): unknown {
+  public transform(courses: ICourse[], order: string): unknown {
     switch (order) {
       case 'upDate': {
         return courses.sort((a: ICourse, b: ICourse) => {

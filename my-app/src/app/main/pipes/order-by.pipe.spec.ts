@@ -8,7 +8,7 @@ import { OrderByPipe } from './order-by.pipe';
 
 describe('OrderByPipe', () => {
   it('create an instance', () => {
-    const pipe = new OrderByPipe();
+    const pipe: OrderByPipe = new OrderByPipe();
     expect(pipe).toBeTruthy();
   });
 });
@@ -47,17 +47,17 @@ describe('OrderBy pipe in template', () => {
     testHostComponent.order = 'downDate';
     fixture.detectChanges();
 
-    const el = debugElement.query(By.css('.creation')).nativeElement;
+    const el: HTMLElement = debugElement.query(By.css('.creation')).nativeElement;
 
     expect(el.textContent).toEqual('5 Sep, 2020');
    });
 
-   it('should contain apropriate date with parameter order = "upDate"', () => {
+  it('should contain apropriate date with parameter order = "upDate"', () => {
     const { debugElement } = fixture;
     testHostComponent.order = 'upDate';
     fixture.detectChanges();
 
-    const el = debugElement.query(By.css('.creation')).nativeElement;
+    const el: HTMLElement = debugElement.query(By.css('.creation')).nativeElement;
 
     expect(el.textContent).toEqual('5 Oct, 2020');
    });

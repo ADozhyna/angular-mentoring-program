@@ -10,12 +10,16 @@ export class CoursesPageComponent implements OnInit {
 
   public searchString: string;
 
-  constructor(private loginService: AuthService) { }
+  constructor(private authService: AuthService) { }
+
+  get isLogin(): boolean {
+    return this.authService.isAuthenticated;
+  }
 
   public ngOnInit(): void {
   }
 
-  public onSearch(searchString: string) {
+  public onSearch(searchString: string): void {
     this.searchString = searchString;
   }
 

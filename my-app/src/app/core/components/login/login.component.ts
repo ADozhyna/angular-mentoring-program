@@ -8,16 +8,16 @@ import { AuthService } from 'src/app/login/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   public loginSrc: string = 'assets/login.svg';
-  public logOutSrc: string = 'assets/logout.svg'
+  public logOutSrc: string = 'assets/logout.svg';
 
   constructor(private loginService: AuthService) { }
 
-  public logOut() {
+  public logOut(): void {
     console.log('logout');
     this.loginService.logout();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

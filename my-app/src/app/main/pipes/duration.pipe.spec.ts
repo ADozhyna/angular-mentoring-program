@@ -11,14 +11,14 @@ import { DurationPipe } from './duration.pipe';
             </div>`
 })
 export class TestPipeComponent {}
-  
+
 describe('duration pipe in component template', () => {
     let fixture: ComponentFixture<TestPipeComponent>;
-  
+
     beforeEach(async () => {
       TestBed.configureTestingModule({
         declarations: [TestPipeComponent, DurationPipe]
-      }).compileComponents()
+      }).compileComponents();
     });
 
     beforeEach(() => {
@@ -27,18 +27,18 @@ describe('duration pipe in component template', () => {
     });
 
     it('#case-1 should contain "3h 0min"', () => {
-      const el = fixture.debugElement.query(By.css('#case-1')).nativeElement;
+      const el: HTMLElement = fixture.debugElement.query(By.css('#case-1')).nativeElement;
       expect(el.textContent).toBe('3h 0min');
     });
-  
+
     it('#case-2 should contain "30min"', () => {
-      const el = fixture.debugElement.query(By.css('#case-2')).nativeElement;
+      const el: HTMLElement = fixture.debugElement.query(By.css('#case-2')).nativeElement;
       expect(el.textContent).toBe('30min');
     });
   });
 
 describe('DurationPipe', () => {
-  const pipe = new DurationPipe();
+  const pipe: DurationPipe = new DurationPipe();
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
   });
@@ -49,5 +49,5 @@ describe('DurationPipe', () => {
 
   it('transform "30m" to "30min"', () => {
     expect(pipe.transform('30m')).toBe('30min');
-  })
+  });
 });
