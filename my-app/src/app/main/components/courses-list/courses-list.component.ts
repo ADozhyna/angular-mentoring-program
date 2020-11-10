@@ -49,9 +49,6 @@ export class CoursesListComponent implements OnInit {
     if (changes.searchString.currentValue) {
      const filteredList: ICourse[] = this.filterPipe.transform(mockData, this.searchString);
      this.coursesList = filteredList;
-     if (!this.coursesList.length) {
-       this.coursesList = mockData;
-     }
     }
   }
 
