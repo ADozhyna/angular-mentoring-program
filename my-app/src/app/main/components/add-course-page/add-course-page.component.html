@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <mat-card>
+        <mat-card-title>New course</mat-card-title> 
+        <mat-form-field appearance="fill">
+            <mat-label>Title:</mat-label>
+            <input matInput required name="title" [(ngModel)]="model.title">
+        </mat-form-field>
+        <mat-form-field apperance="fill">
+            <mat-label>Description:</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." name="description" [(ngModel)]="model.description"></textarea>
+        </mat-form-field>
+        <app-date (getDate)="getDate($event)"></app-date>
+        <app-duration (getDuration)="getDuration($event)"></app-duration>
+        <mat-card-actions>
+            <button (click)="cancelCreation()">Cancel</button>
+            <button (click)="addCourse()">Save</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

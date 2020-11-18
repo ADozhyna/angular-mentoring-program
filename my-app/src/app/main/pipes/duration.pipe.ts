@@ -6,7 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
 
   public transform(value: string): string {
-    const min: number = Number(value.slice(0, -1));
+    let min: number;
+    if (value.includes('h')) {
+      min = Number(value.slice(0, -1));
+    } else {
+      min = Number(value);
+    }
     if (min > 60) {
       const h: number = Math.floor(min / 60);
       const m: number = min % 60;

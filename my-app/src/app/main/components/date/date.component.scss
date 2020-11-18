@@ -1,0 +1,11 @@
+.mat-form-field-appearance-fill {
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .material-icons {
+            font-size: 20px;
+            color: rgba(0,0,0,.6);
+        }
+    }
+}

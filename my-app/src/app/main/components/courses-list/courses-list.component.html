@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="button-container">
-        <button><i class="material-icons">add</i>Add course</button>
+        <button routerLink="add-course" routerLinkActive="active"><i class="material-icons">add</i>Add course</button>
     </div>
     <ng-container *ngIf="!coursesList">
         <mat-card><mat-card-title>No data. Feel free to add new course</mat-card-title></mat-card>
