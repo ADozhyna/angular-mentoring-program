@@ -9,8 +9,8 @@
             <mat-label>Description:</mat-label>
             <textarea matInput placeholder="Ex. It makes me feel..." name="description" [(ngModel)]="model.description"></textarea>
         </mat-form-field>
-        <app-date (getDate)="getDate($event)"></app-date>
-        <app-duration (getDuration)="getDuration($event)"></app-duration>
+        <app-date-input (updateDate)="getDate($event)"></app-date-input>
+        <app-duration (updateDuration)="getDuration($event)"></app-duration>
         <mat-card-actions>
             <button (click)="cancelCreation()">Cancel</button>
             <button (click)="addCourse()">Save</button>

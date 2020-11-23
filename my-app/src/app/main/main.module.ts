@@ -12,7 +12,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { AddCoursePageComponent } from './components/add-course-page/add-course-page.component';
-import { DateComponent } from './components/date/date.component';
+import { DateInputComponent } from './components/date/date-input.component';
 import { DurationComponent } from './components/duration/duration.component';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { DurationComponent } from './components/duration/duration.component';
     FilterPipe,
     ModalComponent,
     AddCoursePageComponent,
-    DateComponent,
+    DateInputComponent,
     DurationComponent,
   ],
   imports: [

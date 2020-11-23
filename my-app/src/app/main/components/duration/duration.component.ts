@@ -9,12 +9,12 @@ export class DurationComponent implements OnInit {
 
   public duration: string;
 
-  @Output() public getDuration: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public updateDuration: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   public emitDuration(): void {
-    this.getDuration.emit(this.duration);
+    this.updateDuration.emit(this.duration);
   }
 
   public ngOnInit(): void {
