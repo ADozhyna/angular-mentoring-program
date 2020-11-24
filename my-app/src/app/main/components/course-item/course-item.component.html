@@ -8,7 +8,7 @@
         </mat-card-subtitle>
         <mat-card-content> {{ course.description }}</mat-card-content>
         <mat-card-actions>
-            <button><i class="material-icons">edit</i>Edit</button>
+            <button [routerLink]="[course.id]" routerLinkActive="active"><i class="material-icons">edit</i>Edit</button>
             <button class="delete-button" (click)="onRemove(course.id)"><i class="material-icons">delete</i>Delete</button>
         </mat-card-actions>
     </mat-card>

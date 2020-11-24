@@ -5,7 +5,8 @@ import { CoursesPageComponent } from './components/courses-page/courses-page.com
 
 const routes: Routes = [
     {path: '', component: CoursesPageComponent},
-    {path: 'add-course', component: AddCoursePageComponent},
+    {path: 'new', component: AddCoursePageComponent},
+    {path: ':id', component: AddCoursePageComponent},
 ];
 
 @NgModule({

@@ -7,7 +7,8 @@ export class DurationPipe implements PipeTransform {
 
   public transform(value: string): string {
     let min: number;
-    if (value.includes('h')) {
+    console.log(value);
+    if (value.includes('m')) {
       min = Number(value.slice(0, -1));
     } else {
       min = Number(value);

@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log(this.isLogin);
   }
 
 }
