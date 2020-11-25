@@ -9,15 +9,9 @@ import { AuthService } from 'src/app/login/services/auth.service';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-<<<<<<< HEAD
   constructor() { }
   
-=======
-  constructor(private route: ActivatedRoute) { }
-
->>>>>>> a573181... feat: routing, AuthGuard, edit-course logic
   public ngOnInit(): void {
-    this.route.data.subscribe()
   }
 
 }

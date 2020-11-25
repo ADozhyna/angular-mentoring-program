@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/login/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public isToken: string;
+
   constructor(private authService: AuthService) { }
 
   get isLogin(): boolean {
@@ -15,6 +17,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.isToken = localStorage.getItem('token');
   }
 
 }

@@ -10,13 +10,13 @@ export class DateInputComponent implements OnInit {
 
   public date: string;
 
-  @Input() model: ICourse;
+  @Input() public model: ICourse;
   @Output() public updateDate: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   public ngOnInit(): void {
-    if(this.model.creationDate) {
+    if (this.model.creationDate) {
       this.date = this.model.creationDate;
     }
   }

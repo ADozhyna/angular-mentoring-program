@@ -1,8 +1,8 @@
 <div class="wrapper">
     <div class="navigation" fxLayout="row" fxLayoutAlign="space-between center">
         <app-logo></app-logo>
-        <app-login *ngIf="isLogin"></app-login>
+        <app-login *ngIf="isLogin || isToken"></app-login>
     </div>
-    <app-breadcrumbs *ngIf="isLogin"></app-breadcrumbs>
+    <app-breadcrumbs *ngIf="isLogin || isToken"></app-breadcrumbs>
 </div>
 

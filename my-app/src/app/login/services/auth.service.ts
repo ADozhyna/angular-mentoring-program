@@ -30,7 +30,7 @@ export class AuthService {
     this.user.password = '';
     this.user.token = '';
     localStorage.removeItem('token');
-    this.ruoter.navigateByUrl('/login')
+    this.ruoter.navigateByUrl('/login');
   }
 
   public getUserInfo(): string {

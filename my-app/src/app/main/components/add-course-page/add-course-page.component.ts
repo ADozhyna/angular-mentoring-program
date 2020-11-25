@@ -26,11 +26,10 @@ export class AddCoursePageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
-
   public ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if(params.id) {
-        const res = this.coursesService.getItemById(Number(params.id));
+      if (params.id) {
+        const res: ICourse = this.coursesService.getItemById(Number(params.id));
         this.model.id = res.id;
         this.model.title = res.title;
         this.model.description = res.description;
@@ -60,7 +59,7 @@ export class AddCoursePageComponent implements OnInit {
     }
   }
 
-  public editCourse() {
+  public editCourse(): void {
     this.coursesService.updateItem(this.model.id, this.model);
     this.router.navigate(['']);
   }
