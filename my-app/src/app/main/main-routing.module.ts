@@ -1,13 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from '../core/components/not-found/not-found.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 import { AddCoursePageComponent } from './components/add-course-page/add-course-page.component';
 import { CoursesPageComponent } from './components/courses-page/courses-page.component';
 
 const routes: Routes = [
-    {path: '', component: CoursesPageComponent},
-    {path: 'new', component: AddCoursePageComponent},
-    {path: ':id', component: AddCoursePageComponent},
+    {path: '', component: CoursesPageComponent, canLoad: [AuthGuard]},
+    {
+      path: 'new',
+      component: AddCoursePageComponent,
+      data: {
+        breadcrumb: 'new',
+      },
+    },
+    {
+      path: ':id',
+      component: AddCoursePageComponent,
+      data: {
+        breadcrumb: '',
+      },
+    },
 ];
 
 @NgModule({

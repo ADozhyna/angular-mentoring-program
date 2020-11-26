@@ -6,12 +6,15 @@ import { AuthGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {path: '', redirectTo: 'courses', pathMatch: 'full'},
   {path: 'courses', loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-   canLoad: [AuthGuard]},
+   canLoad: [AuthGuard],
+   canActivate: [AuthGuard],
+   data: {
+     breadcrumb: 'Courses',
+   }
+  },
   {path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
   {path: '**', component: NotFoundComponent},
 ];
-
-// To do: breadcrumbs
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
