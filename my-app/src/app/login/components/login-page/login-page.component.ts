@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,12 +10,20 @@ import { AuthService } from '../../services/auth.service';
 export class LoginPageComponent implements OnInit {
 
   public isPasswordHidden: boolean = true;
-  public user: { email: string; password: string; token: string } = this.authService.user;
+  public user: { login: string; password: string } = {
+    login: '',
+    password: '',
+  };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   public login(): void {
-    this.authService.loginUser();
+    this.authService.loginUser(this.user.login, this.user.password)
+      .subscribe(data => {
+        if(data.token) {
+          this.router.navigateByUrl('/courses');
+        }
+      });
   }
 
   public ngOnInit(): void {

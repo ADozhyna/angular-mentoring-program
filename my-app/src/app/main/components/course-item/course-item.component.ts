@@ -21,7 +21,7 @@ export class CourseItemComponent implements OnInit {
   }
 
   public ngOnChanges(): void {
-    this.publicationDate = this.course.creationDate;
+    this.publicationDate = this.course.date;
   }
 
   public onRemove(id: number): void {

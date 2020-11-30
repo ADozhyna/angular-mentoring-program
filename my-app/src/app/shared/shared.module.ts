@@ -7,6 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     FormsModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   exports: [
     FlexLayoutModule,
@@ -27,7 +29,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     FormsModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }

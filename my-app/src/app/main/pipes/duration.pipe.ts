@@ -5,20 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DurationPipe implements PipeTransform {
 
-  public transform(value: string): string {
-    let min: number;
-    console.log(value);
-    if (value.includes('m')) {
-      min = Number(value.slice(0, -1));
-    } else {
-      min = Number(value);
-    }
-    if (min > 60) {
-      const h: number = Math.floor(min / 60);
-      const m: number = min % 60;
+  public transform(value: number): string {
+    if (value > 60) {
+      const h: number = Math.floor(value / 60);
+      const m: number = value % 60;
       return `${h}h ${m}min`;
     } else {
-      return `${min}min`;
+      return `${value}min`;
     }
   }
 }

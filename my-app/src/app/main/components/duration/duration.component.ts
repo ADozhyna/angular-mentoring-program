@@ -8,10 +8,10 @@ import { ICourse } from 'src/app/shared/models/course.model';
 })
 export class DurationComponent implements OnInit {
 
-  public duration: string;
+  public duration: number;
 
   @Input() public model: ICourse;
-  @Output() public updateDuration: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public updateDuration: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
@@ -20,8 +20,8 @@ export class DurationComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    if (this.model.duration) {
-      this.duration = this.model.duration;
+    if (this.model.length) {
+      this.duration = this.model.length;
     }
   }
 

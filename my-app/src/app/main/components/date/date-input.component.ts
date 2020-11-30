@@ -16,8 +16,8 @@ export class DateInputComponent implements OnInit {
   constructor() { }
 
   public ngOnInit(): void {
-    if (this.model.creationDate) {
-      this.date = this.model.creationDate;
+    if (this.model.date) {
+      this.date = this.model.date;
     }
   }
 
