@@ -1,46 +1,32 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
   styleUrls: ['./course-item.component.scss']
 })
-export class CourseItemComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked {
+export class CourseItemComponent implements OnInit {
   @Input() public course: ICourse;
-  @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
-  constructor() { }
+
+  public publicationDate: string;
+
+  constructor(private coursesService: CoursesService, private dialog: MatDialog) { }
 
   public ngOnInit(): void {
-    console.log('ngOnInit');
+  }
+  public ngOnChanges(): void {
+    this.publicationDate = this.course.creationDate;
   }
 
-  public ngOnChanges() {
-    console.log('ngOnChanges');
-  }
-
-  public ngDoCheck() {
-    console.log('ngDoCheck');
-  }
-
-  public ngAfterContentInit() {
-    console.log('ngAfterContentInit');
-  }
-
-  public ngAfterContentChecked() {
-    console.log('ngAfterContentChecked');
-  }
-
-  public ngAfterViewInit() {
-    console.log('ngAfterViewInit');
-  }
-
-  public ngAfterViewChecked() {
-    console.log('ngAfterViewChecked')
-  }
-
-  public onRemove(id: number) {
-    this.remove.emit(id);
+  public onRemove(id: number): void {
+    this.dialog.open(ModalComponent, {
+      width: '600px',
+      data: id
+    });
   }
 
 }
