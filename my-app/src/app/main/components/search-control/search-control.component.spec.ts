@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { SearchControlComponent } from './search-control.component';
 
@@ -21,5 +23,15 @@ describe('SearchControlComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit submit once clicked', () => {
+
+    const spy: jasmine.Spy<() => void> = spyOn(component, 'onSubmit').and.callThrough()
+
+    fixture.debugElement.query(By.css('form')).triggerEventHandler('ngSubmit', null);
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
   });
 });
