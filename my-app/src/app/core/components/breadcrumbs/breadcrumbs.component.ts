@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/login/services/auth.service';
 export class BreadcrumbsComponent implements OnInit {
 
   constructor() { }
-
+  
   public ngOnInit(): void {
   }
 
