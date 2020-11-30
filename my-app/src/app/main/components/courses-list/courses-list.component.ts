@@ -1,47 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit, SimpleChange } from '@angular/core';
+import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
-  styleUrls: ['./courses-list.component.scss']
+  styleUrls: ['./courses-list.component.scss'],
+  providers: [FilterPipe]
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent implements OnInit, DoCheck {
   public coursesList: ICourse[];
+  @Input() public searchString: string;
 
-  constructor() { }
+  constructor(private filterPipe: FilterPipe, private coursesService: CoursesService) { }
 
-  ngOnInit(): void {
-    this.coursesList = [
-      {
-        id: 1,
-        title: 'Video Course 1. Name tag',
-        duration: '1h 20min',
-        creationDate: new Date('09.11.2018'),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      },
-      {
-        id: 2,
-        title: 'Video Course 1. Name tag',
-        duration: '1h 20min',
-        creationDate: new Date('09.11.2018'),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      },
-      {
-        id: 3,
-        title: 'Video Course 1. Name tag',
-        duration: '1h 20min',
-        creationDate: new Date('09.11.2018'),
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      },
-    ]
+  public ngOnInit(): void {
+    this.coursesList = this.coursesService.getList();
   }
 
-  public onDelete(id: number) {
-    console.log(id);
+  public ngDoCheck(): void {
+    this.coursesList = this.coursesService.getList();
+    this.coursesList = this.filterPipe.transform(this.coursesList, this.searchString);
   }
 
-  public onLoad() {
+  public onLoad(): void {
     console.log('loading...');
   }
 

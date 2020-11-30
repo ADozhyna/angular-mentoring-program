@@ -1,0 +1,21 @@
+button {
+    background-color: var(--secondary-btn-color);
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    transition: all .2s linear;
+    &:hover {
+        background-color: darken($color: #bdee68, $amount: 15%)
+    }
+}
+
+p {
+    text-align: center;
+}

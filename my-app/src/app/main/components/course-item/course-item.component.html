@@ -1,16 +1,17 @@
-<div class="wrapper">
-    <mat-card>
-        <mat-card-title>{{ course.title }}</mat-card-title>
+<div class="wrapper" >
+  <ng-container *ngIf="course">
+    <mat-card [publicationDate]="publicationDate" appBorderColor [ngClass]="{top: course.top === true}">
+        <mat-card-title>{{ course.title | uppercase}}<i class="material-icons" *ngIf="course.top">grade</i></mat-card-title>
         <mat-card-subtitle>
-            <p><i class="material-icons">access_time</i>{{ course.duration }}</p>
-            <p><i class="material-icons">date_range</i>{{ course.creationDate | date: 'mediumDate' }}</p>
+            <p><i class="material-icons">access_time</i>{{ course.duration | duration }}</p>
+            <p><i class="material-icons">date_range</i><span class="creation">{{ course.creationDate | date: 'd MMM, y' }}</span></p>
         </mat-card-subtitle>
         <mat-card-content> {{ course.description }}</mat-card-content>
         <mat-card-actions>
             <button><i class="material-icons">edit</i>Edit</button>
-            <button (click)="onRemove(course.id)"><i class="material-icons">delete</i>Delete</button>
+            <button class="delete-button" (click)="onRemove(course.id)"><i class="material-icons">delete</i>Delete</button>
         </mat-card-actions>
     </mat-card>
-
+  </ng-container>
 </div>
 

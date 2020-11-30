@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+    <mat-label>Date:</mat-label>
+    <div>
+        <input matInput required name="date"  [(ngModel)]="date" (change)="emitDate()">
+        <i class="material-icons">calendar_today</i>
+    </div>
+</mat-form-field>

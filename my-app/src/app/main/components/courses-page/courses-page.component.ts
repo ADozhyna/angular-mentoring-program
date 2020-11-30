@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/login/services/auth.service';
 
 @Component({
   selector: 'app-courses-page',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesPageComponent implements OnInit {
 
-  constructor() { }
+  public searchString: string;
+
+  constructor(private authService: AuthService) { }
+
+  get isLogin(): boolean {
+    return this.authService.isAuthenticated;
+  }
 
   public ngOnInit(): void {
+  }
+
+  public onSearch(searchString: string): void {
+    this.searchString = searchString;
   }
 
 }
