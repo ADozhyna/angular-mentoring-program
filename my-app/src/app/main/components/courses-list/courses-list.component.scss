@@ -1,0 +1,43 @@
+.wrapper {
+    max-width: 1110px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    .button-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        button {
+            background-color: var(--secondary-btn-color);
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .mat-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: var(--primary-btn-color);
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: all .2s linear;
+            cursor: pointer;
+            &:hover {
+                color: var(--secondary-btn-color)
+            }
+        }
+    }
+    
+    
+}

@@ -1,0 +1,22 @@
+:host {
+    width: 100%;
+    
+    footer {
+        width: 100%;
+        background-color: var(--footer-bg-color);
+        position: sticky;
+        bottom: 0;
+    }
+    .wrapper {
+        max-width: 1110px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 0;
+        p {
+            color: var(--footer-text-color);
+            font-size: 12px;
+            line-height: 24px;
+            text-align: right;
+        }
+    }
+}

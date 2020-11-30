@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <mat-card>
+        <mat-card-title>{{ course.title }}</mat-card-title>
+        <mat-card-subtitle>
+            <p><i class="material-icons">access_time</i>{{ course.duration }}</p>
+            <p><i class="material-icons">date_range</i>{{ course.creationDate | date: 'mediumDate' }}</p>
+        </mat-card-subtitle>
+        <mat-card-content> {{ course.description }}</mat-card-content>
+        <mat-card-actions>
+            <button><i class="material-icons">edit</i>Edit</button>
+            <button (click)="onRemove(course.id)"><i class="material-icons">delete</i>Delete</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
+
