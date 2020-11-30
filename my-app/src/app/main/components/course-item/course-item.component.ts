@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-course-item',
@@ -8,20 +11,22 @@ import { ICourse } from 'src/app/shared/models/course.model';
 })
 export class CourseItemComponent implements OnInit {
   @Input() public course: ICourse;
-  @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
 
   public publicationDate: string;
 
-  constructor() { }
+  constructor(private coursesService: CoursesService, private dialog: MatDialog) { }
 
-  public ngOnInit(): void {}
-
+  public ngOnInit(): void {
+  }
   public ngOnChanges(): void {
     this.publicationDate = this.course.creationDate;
   }
 
   public onRemove(id: number): void {
-    this.remove.emit(id);
+    this.dialog.open(ModalComponent, {
+      width: '600px',
+      data: id
+    });
   }
 
 }

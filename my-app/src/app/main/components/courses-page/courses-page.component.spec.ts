@@ -46,7 +46,7 @@ describe('CoursesPageComponent', () => {
 
   it('should get search string', () => {
     const childEl: DebugElement = fixture.debugElement.query(By.css('form'));
-    const spy: jasmine.Spy = spyOn(component, 'onSearch');
+    const spy: jasmine.Spy<(searchString: string) => void> = spyOn(component, 'onSearch');
     childEl.triggerEventHandler('ngSubmit', null);
 
     fixture.detectChanges();

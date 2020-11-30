@@ -28,10 +28,10 @@ describe('CoursesListComponent', () => {
   });
 
   beforeEach(() => {
-  fixture = TestBed.createComponent(CoursesListComponent);
-  component = fixture.componentInstance;
-  fixture.detectChanges();
-});
+    fixture = TestBed.createComponent(CoursesListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -47,10 +47,12 @@ describe('CoursesListComponent', () => {
   });
 
   it('should log message', () => {
-    const consoleSpy: jasmine.Spy = spyOn(console, 'log');
-    component.onLoad();
+
+    const consoleSpy: jasmine.Spy<{
+      (...data: any[]): void;
+      (message?: any, ...optionalParams: any[]): void;
+    }> = spyOn(console, 'log');
 
     expect(consoleSpy).toHaveBeenCalled();
   });
-
 });

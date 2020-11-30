@@ -80,5 +80,5 @@ describe('Filter pipe in template', () => {
     const length: number = debugElement.queryAll(By.css('mat-card')).length;
 
     expect(length).toEqual(testHostComponent.coursesList.length);
-   });
+  });
 });
