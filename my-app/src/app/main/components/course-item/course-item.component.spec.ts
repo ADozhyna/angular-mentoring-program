@@ -1,5 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { DurationPipe } from '../../pipes/duration.pipe';
@@ -12,7 +13,7 @@ import { CourseItemComponent } from './course-item.component';
 })
 class TestHostComponent {
   public course: ICourse = {id: 1, title: 'Some title', duration: 'duration', creationDate: '10/5/2020', description: 'description', top: false};
-  public deletedCourseId: any;
+  public deletedCourseId: number;
 
   public onDelete(id: number): void {
     this.deletedCourseId = id;
@@ -25,7 +26,8 @@ describe('CourseItemComponent', () => {
 
   beforeEach( async () => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, TestHostComponent, DurationPipe]
+      declarations: [CourseItemComponent, TestHostComponent, DurationPipe ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
@@ -59,7 +61,8 @@ describe('CourseItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseItemComponent ]
+      declarations: [ CourseItemComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });

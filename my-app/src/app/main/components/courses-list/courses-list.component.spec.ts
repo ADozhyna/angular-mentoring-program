@@ -47,11 +47,11 @@ describe('CoursesListComponent', () => {
   });
 
   it('should log message', () => {
+
     const consoleSpy: jasmine.Spy<{
       (...data: any[]): void;
       (message?: any, ...optionalParams: any[]): void;
     }> = spyOn(console, 'log');
-    component.onLoad();
 
     expect(consoleSpy).toHaveBeenCalled();
   });

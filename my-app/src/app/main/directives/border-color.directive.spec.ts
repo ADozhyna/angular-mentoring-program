@@ -47,5 +47,4 @@ describe('[appBorderColor] directive', () => {
 
     expect(el.style.borderBottom).toBe('5px solid rgb(189, 238, 104)');
   });
-
 });

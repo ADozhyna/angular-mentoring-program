@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { CourseItemComponent } from '../components/course-item/course-item.component';
@@ -49,7 +50,8 @@ describe('Filter pipe in template', () => {
 
   beforeEach( async () => {
     TestBed.configureTestingModule({
-      declarations: [CourseItemComponent, TestHostComponent, FilterPipe, DurationPipe]
+      declarations: [CourseItemComponent, TestHostComponent, FilterPipe, DurationPipe ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });

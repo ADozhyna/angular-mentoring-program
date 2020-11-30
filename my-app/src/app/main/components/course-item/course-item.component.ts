@@ -18,7 +18,6 @@ export class CourseItemComponent implements OnInit {
 
   public ngOnInit(): void {
   }
-
   public ngOnChanges(): void {
     this.publicationDate = this.course.creationDate;
   }

@@ -17,22 +17,23 @@ export class BorderColorDirective implements OnChanges {
     this.renderer2.setStyle(this.element.nativeElement, 'border-bottom', `5px solid ${color}`);
   }
 
-  public ngOnChanges(): void {
-    this.borderColor = 'black';
-
+  private getDaysNumber(): number {
     const date: Date = new Date(this.publicationDate);
+    return Math.ceil(Math.abs(Date.now() - date.getTime()) / (1000 * 3600 * 24));
+  }
 
-    const days: number = Math.ceil(Math.abs(Date.now() - date.getTime()) / (1000 * 3600 * 24));
+  public ngOnChanges(): void {
+    const days: number = this.getDaysNumber();
+    const colorForNewItem: string = '#bdee68';
+    const colorForOldItem: string = '#0079AD';
 
     if (days < 14) {
-      this.borderColor = '#bdee68';
+      this.borderColor = colorForNewItem;
     } else {
-      this.borderColor = '#0079AD';
+      this.borderColor = colorForOldItem;
     }
 
     this.setBorder(this.borderColor);
-
-    console.log(date);
   }
 
 }
