@@ -22,7 +22,7 @@ export class AuthGuard implements CanLoad, CanActivate {
       }
   }
   public canActivate(): boolean {
-    if (this.isLogin || localStorage.getItem('token')) {
+    if (this.isLogin || localStorage.getItem('currentUserToken')) {
       return true;
     } else {
       this.router.navigateByUrl('/login');

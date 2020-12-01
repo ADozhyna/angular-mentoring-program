@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
   public login(): void {
     this.authService.loginUser(this.user.login, this.user.password)
       .subscribe(data => {
-        if(data.token) {
+        if (data.token) {
           this.router.navigateByUrl('/courses');
         }
       });

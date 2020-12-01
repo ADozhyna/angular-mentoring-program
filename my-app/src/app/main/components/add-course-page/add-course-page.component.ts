@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
 
@@ -34,7 +33,7 @@ export class AddCoursePageComponent implements OnInit {
         this.coursesService.getItemById(Number(params.id))
           .subscribe(course => {
             this.model = course;
-          })
+          });
         this.pageTitle = 'Edit course';
       } else {
         this.pageTitle = 'New course';
@@ -42,24 +41,26 @@ export class AddCoursePageComponent implements OnInit {
     });
   }
 
-  /*public getDuration(duration: number): void {
-    this.model$.length = duration;
+  public getDuration(duration: number): void {
+    this.model.length = duration;
   }
 
   public getDate(date: string): void {
-    this.model$.date = date;
+    this.model.date = date;
   }
 
   public addCourse(): void {
-    this.model$.id = this.coursesService.coursesList.length + 1;
-    if (this.model$.name && this.model.description && this.model.length && this.model.date) {
-      this.coursesService.createCourse(this.model);
+    this.model.id = Math.floor(Math.random() * (9999 - 1000 + 1));
+    if (this.model.name && this.model.description && this.model.length && this.model.date) {
+      this.coursesService.createCourse(this.model)
+        .subscribe(data => console.log(data));
       this.router.navigate(['']);
     }
   }
 
   public editCourse(): void {
-    this.coursesService.updateItem(this.model.id, this.model);
+    this.coursesService.updateItem(this.model.id, this.model)
+      .subscribe(data => console.log(data));
     this.router.navigate(['']);
   }
 
@@ -69,6 +70,6 @@ export class AddCoursePageComponent implements OnInit {
     this.model.length = 0;
     this.model.name = '';
     this.router.navigate(['']);
-  }*/
+  }
 
 }

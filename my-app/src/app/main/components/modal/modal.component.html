@@ -1,7 +1,7 @@
 <mat-dialog-content>
     <p>Do you really want to delete this course?</p>
     <div class="button-container" fxLayout="row" fxLayoutAlign="center center">
-        <button (click)="remove()">Yes</button>
-        <button (click)="cancelRemove()">No</button>
+        <button [mat-dialog-close]="true">Yes</button>
+        <button mat-dialog-close>No</button>
     </div> 
 </mat-dialog-content>

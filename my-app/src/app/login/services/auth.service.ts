@@ -9,11 +9,10 @@ import { IUser } from '../../shared/models/user-entity.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly AUTH_URL = 'http://localhost:3004/auth';
+  private readonly AUTH_URL: string = 'http://localhost:3004/auth';
+  private currentUserToken: string;
 
   public isAuthenticated: boolean = false;
-
-  private currentUserToken: string;
 
   public user: { email: string; password: string; token: string } = {
     email: '',
@@ -44,6 +43,9 @@ export class AuthService {
 
   public getUserInfo(): Observable<IUser> {
     return this.http.get<IUser>(`${this.AUTH_URL}/userInfo`);
+  }
 
+  public getToken(): string {
+    return this.currentUserToken;
   }
 }

@@ -11,19 +11,9 @@ export class ModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: number,
-    private coursesService: CoursesService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   public ngOnInit(): void {
-  }
-
-  public remove(): void {
-    this.coursesService.removeItem(this.data);
-    this.dialogRef.close();
-  }
-
-  public cancelRemove(): void {
-    this.dialogRef.close();
   }
 
 }
