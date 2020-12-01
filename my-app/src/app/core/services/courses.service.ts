@@ -22,8 +22,8 @@ export class CoursesService {
     this.coursesList.push(course);
   }
 
-  public getItemById(id: number): ICourse {
-    return this.coursesList.find(item => item.id === id);
+  public getItemById(id: number): Observable<ICourse> {
+    return this.http.get<ICourse>(`${this.COURSES_URL}/${id}`);
   }
 
   public updateItem(id: number, newData: ICourse): void {

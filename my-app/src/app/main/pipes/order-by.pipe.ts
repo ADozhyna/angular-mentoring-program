@@ -10,8 +10,8 @@ export class OrderByPipe implements PipeTransform {
     switch (order) {
       case 'upDate': {
         return courses.sort((a: ICourse, b: ICourse) => {
-          const dateA: Date = new Date(a.creationDate);
-          const dateB: Date = new Date(b.creationDate);
+          const dateA: Date = new Date(a.date);
+          const dateB: Date = new Date(b.date);
           if (dateA < dateB) {
             return 1;
           }
@@ -22,8 +22,8 @@ export class OrderByPipe implements PipeTransform {
       }
       case 'downDate': {
         return courses.sort((a: ICourse, b: ICourse) => {
-          const dateA: Date = new Date(a.creationDate);
-          const dateB: Date = new Date(b.creationDate);
+          const dateA: Date = new Date(a.date);
+          const dateB: Date = new Date(b.date);
           if (dateA < dateB) {
             return -1;
           }
