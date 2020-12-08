@@ -6,17 +6,32 @@
         background-color: #fff;
     }
 
-    .breadcrumbs-wrapper div {
+    ul {
         max-width: 1110px;
-        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         margin: 0 auto;
     }
-    a {
-        color: var(--project-text-color);
-        font-size: 14px;
-        text-align: left;
-        font-weight: 700;
-        text-decoration: none;
-        
+
+    li {
+        list-style: none;
+        span {
+            color: var(--project-text-color);
+            font-size: 14px;
+            text-align: left;
+            font-weight: 700;
+            padding: 0 10px;
+        }
     }
+
+    li::after {
+        content: "/";
+        color: var(--project-text-color);
+    }
+
+    li:last-child::after {
+        content: "";
+    }
+       
 }

@@ -55,11 +55,11 @@ export class CoursesService {
     return this.coursesList.find(item => item.id === id);
   }
 
-  public updateItem(id: number, newData: {title: string, duration: string, creationdate: string, description: string, top: boolean}): void {
+  public updateItem(id: number, newData: ICourse): void {
     const item: ICourse = this.coursesList.find(el => el.id === id);
     item.title = newData.title;
     item.duration = newData.duration;
-    item.creationDate = newData.creationdate;
+    item.creationDate = newData.creationDate;
     item.description = newData.description;
     item.top = newData.top;
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,12 @@ export class AuthService {
     token: ''
   };
 
-  constructor() { }
+  constructor(private ruoter: Router) { }
 
   public loginUser(): void {
     this.user.token = String(Math.random());
     this.isAuthenticated = true;
+    this.ruoter.navigateByUrl('/courses');
     localStorage.setItem('token', this.user.token);
     console.log('logged is successfully');
   }
@@ -28,6 +30,7 @@ export class AuthService {
     this.user.password = '';
     this.user.token = '';
     localStorage.removeItem('token');
+    this.ruoter.navigateByUrl('/login');
   }
 
   public getUserInfo(): string {

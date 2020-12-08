@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
 
@@ -19,9 +19,28 @@ export class AddCoursePageComponent implements OnInit {
     top: false
   };
 
-  constructor(private coursesService: CoursesService, private router: Router) { }
+  public pageTitle: string = 'New course';
+
+  constructor(
+    private coursesService: CoursesService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   public ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params.id) {
+        const res: ICourse = this.coursesService.getItemById(Number(params.id));
+        this.model.id = res.id;
+        this.model.title = res.title;
+        this.model.description = res.description;
+        this.model.duration = res.duration;
+        this.model.creationDate = res.creationDate;
+        this.model.top = res.top;
+        this.pageTitle = 'Edit course';
+      } else {
+        this.pageTitle = 'New course';
+      }
+    });
   }
 
   public getDuration(duration: string): void {
@@ -40,7 +59,12 @@ export class AddCoursePageComponent implements OnInit {
     }
   }
 
-  public cancelCreation(): void {
+  public editCourse(): void {
+    this.coursesService.updateItem(this.model.id, this.model);
+    this.router.navigate(['']);
+  }
+
+  public cancel(): void {
     this.model.creationDate = '';
     this.model.description = '';
     this.model.duration = '';

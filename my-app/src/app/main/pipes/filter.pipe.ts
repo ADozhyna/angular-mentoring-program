@@ -9,9 +9,9 @@ export class FilterPipe implements PipeTransform {
   public transform(courses: ICourse[], searchString: string): ICourse[] {
     if (!courses || !searchString) {
       return courses;
+    } else {
+      return courses.filter((course) => course.title.toLowerCase().includes(searchString.toLowerCase()));
     }
-
-    return courses.filter((course) => course.title.toLowerCase().includes(searchString.toLowerCase()));
   }
 
 }
