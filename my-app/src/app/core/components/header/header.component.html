@@ -1,8 +1,17 @@
 <div class="wrapper">
     <div class="navigation" fxLayout="row" fxLayoutAlign="space-between center">
         <app-logo></app-logo>
-        <app-login *ngIf="isLogin || isToken"></app-login>
+        <div class="user-info" *ngIf="isLogin.value">
+            <div class="login" fxLayout="row" fxLayoutAlign="space-around center">
+                <img [src]="loginSrc" alt="user login">
+                <div class="user-info__name" *ngIf="currentUser"><span>{{ currentUser.name.first }} {{ currentUser.name.last }}</span></div>
+              </div>
+              <div class="logoff" fxLayout="row" fxLayoutAlign="space-around center">
+                <img [src]="logOutSrc" alt="logout">
+                <button (click)="logOut()">Log off</button>
+              </div>
+        </div>
     </div>
-    <app-breadcrumbs *ngIf="isLogin || isToken"></app-breadcrumbs>
+    <app-breadcrumbs *ngIf="isLogin.value"></app-breadcrumbs>
 </div>
 
