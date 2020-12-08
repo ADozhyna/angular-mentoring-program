@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ICourse } from 'src/app/shared/models/course.model';
 
 @Component({
@@ -6,7 +7,7 @@ import { ICourse } from 'src/app/shared/models/course.model';
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.scss']
 })
-export class DateInputComponent implements OnInit {
+export class DateInputComponent implements OnInit, OnChanges {
 
   public date: string;
 
@@ -16,9 +17,11 @@ export class DateInputComponent implements OnInit {
   constructor() { }
 
   public ngOnInit(): void {
-    if (this.model.creationDate) {
-      this.date = this.model.creationDate;
-    }
+    this.date = this.model.date;
+  }
+
+  public ngOnChanges(): void {
+    this.date = this.model.date;
   }
 
   public emitDate(): void {

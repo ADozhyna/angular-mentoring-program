@@ -12,11 +12,12 @@ export class AddCoursePageComponent implements OnInit {
 
   public model: ICourse = {
     id: null,
-    title: '',
+    name: '',
     description: '',
-    duration: '',
-    creationDate: '',
-    top: false
+    date: '',
+    length: 0,
+    isTopRated: false,
+    authors: '',
   };
 
   public pageTitle: string = 'New course';
@@ -29,13 +30,10 @@ export class AddCoursePageComponent implements OnInit {
   public ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params.id) {
-        const res: ICourse = this.coursesService.getItemById(Number(params.id));
-        this.model.id = res.id;
-        this.model.title = res.title;
-        this.model.description = res.description;
-        this.model.duration = res.duration;
-        this.model.creationDate = res.creationDate;
-        this.model.top = res.top;
+        this.coursesService.getItemById(Number(params.id))
+          .subscribe(course => {
+            this.model = course;
+          });
         this.pageTitle = 'Edit course';
       } else {
         this.pageTitle = 'New course';
@@ -43,32 +41,34 @@ export class AddCoursePageComponent implements OnInit {
     });
   }
 
-  public getDuration(duration: string): void {
-    this.model.duration = duration;
+  public getDuration(duration: number): void {
+    this.model.length = duration;
   }
 
   public getDate(date: string): void {
-    this.model.creationDate = date;
+    this.model.date = date;
   }
 
   public addCourse(): void {
-    this.model.id = this.coursesService.coursesList.length + 1;
-    if (this.model.title && this.model.description && this.model.duration && this.model.creationDate) {
-      this.coursesService.createCourse(this.model);
+    this.model.id = Math.floor(Math.random() * (9999 - 1000 + 1));
+    if (this.model.name && this.model.description && this.model.length && this.model.date) {
+      this.coursesService.createCourse(this.model)
+        .subscribe(data => console.log(data));
       this.router.navigate(['']);
     }
   }
 
   public editCourse(): void {
-    this.coursesService.updateItem(this.model.id, this.model);
+    this.coursesService.updateItem(this.model.id, this.model)
+      .subscribe(data => console.log(data));
     this.router.navigate(['']);
   }
 
   public cancel(): void {
-    this.model.creationDate = '';
+    this.model.date = '';
     this.model.description = '';
-    this.model.duration = '';
-    this.model.title = '';
+    this.model.length = 0;
+    this.model.name = '';
     this.router.navigate(['']);
   }
 
