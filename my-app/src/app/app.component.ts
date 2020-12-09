@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './login/services/auth.service';
+import { BehaviorSubject } from 'rxjs';
+import { SpinnerLoaderService } from './core/services/spinner-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,7 @@ import { AuthService } from './login/services/auth.service';
 })
 export class AppComponent {
 
-  constructor() {}
+  public isShowSpinner: BehaviorSubject<boolean> = this.spinnerLoaderService.isShow;
+
+  constructor(private spinnerLoaderService: SpinnerLoaderService) {}
 }

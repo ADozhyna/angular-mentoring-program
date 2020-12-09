@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { CoursesService } from 'src/app/core/services/courses.service';
+import { SpinnerLoaderService } from 'src/app/core/services/spinner-loader.service';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { ModalComponent } from '../modal/modal.component';
@@ -17,17 +18,19 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class CoursesListComponent implements OnInit {
   private count: number = 3;
-  public coursesList: ICourse[] = [];
-
-  public searchString: FormControl = new FormControl();
-
   private debounceSubject: Subject<string> = new Subject<string>();
+
+  public coursesList: ICourse[] = [];
+  public searchString: FormControl = new FormControl();
 
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
     private dialog: MatDialog,
-  ) { }
+    private spinnerLoaderService: SpinnerLoaderService
+  ) {
+    this.spinnerLoaderService.spinnerShow();
+  }
 
   public ngOnInit(): void {
     this.coursesService.getList(0, this.count)
@@ -35,10 +38,11 @@ export class CoursesListComponent implements OnInit {
         data => {
         this.coursesList = data;
         this.count = this.coursesList.length;
+        setInterval(this.spinnerLoaderService.spinnerHide.bind(this.spinnerLoaderService), 2000);
       },
         (err: HttpErrorResponse) => console.log(err)
       );
-    
+
     this.debounceSubject
       .pipe(
         filter(value => value.length >= 3),
@@ -76,6 +80,7 @@ export class CoursesListComponent implements OnInit {
             this.coursesList = data;
           });
       }
+      setInterval(this.spinnerLoaderService.spinnerHide.bind(this.spinnerLoaderService), 2000);
     });
   }
 }

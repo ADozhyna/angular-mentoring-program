@@ -8,6 +8,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     LogoComponent,
     BreadcrumbsComponent,
     NotFoundComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ],
   providers: [
     {

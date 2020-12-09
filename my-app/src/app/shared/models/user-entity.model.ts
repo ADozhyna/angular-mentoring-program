@@ -4,8 +4,7 @@ export interface IUser {
     name: {
       first: string;
       last: string;
-    }
+    };
     login: string;
-    password: string;  
+    password: string;
 }
-
