@@ -1,11 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 import { CoursesService } from 'src/app/core/services/courses.service';
-import { SpinnerLoaderService } from 'src/app/core/services/spinner-loader.service';
 import { ICourse } from 'src/app/shared/models/course.model';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { ModalComponent } from '../modal/modal.component';
@@ -16,21 +15,20 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./courses-list.component.scss'],
   providers: [FilterPipe]
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent implements OnInit, OnDestroy {
   private count: number = 3;
   private debounceSubject: Subject<string> = new Subject<string>();
 
   public coursesList: ICourse[] = [];
   public searchString: FormControl = new FormControl();
 
+  public searchSubscription: Subscription;
+
   constructor(
     private filterPipe: FilterPipe,
     private coursesService: CoursesService,
     private dialog: MatDialog,
-    private spinnerLoaderService: SpinnerLoaderService
-  ) {
-    this.spinnerLoaderService.spinnerShow();
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.coursesService.getList(0, this.count)
@@ -38,14 +36,13 @@ export class CoursesListComponent implements OnInit {
         data => {
         this.coursesList = data;
         this.count = this.coursesList.length;
-        setInterval(this.spinnerLoaderService.spinnerHide.bind(this.spinnerLoaderService), 2000);
       },
         (err: HttpErrorResponse) => console.log(err)
       );
 
-    this.debounceSubject
+    this.searchSubscription = this.debounceSubject
       .pipe(
-        filter(value => value.length >= 3),
+        filter(value => !value.length || value.length >= 3),
         debounceTime(500)
       ).subscribe(() => {
         this.coursesService.getList(0, this.count, 'date', this.searchString.value)
@@ -80,7 +77,10 @@ export class CoursesListComponent implements OnInit {
             this.coursesList = data;
           });
       }
-      setInterval(this.spinnerLoaderService.spinnerHide.bind(this.spinnerLoaderService), 2000);
     });
+  }
+
+  ngOnDestroy() {
+    this.searchSubscription.unsubscribe();
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { SpinnerLoaderService } from '../../services/spinner-loader.service';
 
 @Component({
   selector: 'app-spinner',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpinnerComponent implements OnInit {
 
-  constructor() { }
+  public isShowSpinner: BehaviorSubject<boolean> = this.spinnerLoaderService.isShow;
+
+  constructor(private spinnerLoaderService: SpinnerLoaderService) { }
 
   public ngOnInit(): void {
   }
