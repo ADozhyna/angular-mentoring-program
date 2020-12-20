@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { LogInAction, LogOutAction } from 'src/app/login/actions/auth.actions';
+import { AuthState, currentUser, isAuthenticated } from 'src/app/login/reducers/auth.reducer';
 import { AuthService } from 'src/app/login/services/auth.service';
 import { IUser } from 'src/app/shared/models/user-entity.model';
 
@@ -10,29 +13,18 @@ import { IUser } from 'src/app/shared/models/user-entity.model';
 })
 export class HeaderComponent implements OnInit {
 
-  public currentUser: IUser;
+  public currentUser$: Observable<IUser> = this.store.pipe(select(currentUser));
   public loginSrc: string = 'assets/login.svg';
   public logOutSrc: string = 'assets/logout.svg';
+  public isLogin$: Observable<boolean> = this.store.pipe(select(isAuthenticated))
 
-  constructor(private authService: AuthService) { }
-
-  public get isLogin(): BehaviorSubject<boolean> {
-    return this.authService.isAuthenticated;
-  }
+  constructor(private store: Store<AuthState>) { }
 
   public ngOnInit(): void {
-    this.isLogin.subscribe(value => {
-      if (value) {
-        this.authService.getUserInfo().subscribe(data => {
-          this.currentUser = data;
-        });
-      }
-    });
   }
 
   public logOut(): void {
-    console.log('logout');
-    this.authService.logout();
+    this.store.dispatch(new LogOutAction());
   }
 
 }

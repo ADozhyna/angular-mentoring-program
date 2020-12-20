@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { Store } from '@ngrx/store';
+import { LogInAction } from '../../actions/auth.actions';
+import { AuthState } from '../../reducers/auth.reducer';
 
 @Component({
   selector: 'app-login-page',
@@ -15,15 +16,10 @@ export class LoginPageComponent implements OnInit {
     password: '',
   };
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private store: Store<AuthState>) { }
 
   public login(): void {
-    this.authService.loginUser(this.user.login, this.user.password)
-      .subscribe(data => {
-        if (data.token) {
-          this.router.navigateByUrl('/courses');
-        }
-      });
+   this.store.dispatch(new LogInAction(this.user))
   }
 
   public ngOnInit(): void {
