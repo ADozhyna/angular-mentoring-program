@@ -3,10 +3,11 @@
     width: 100%;
     margin: 0 auto;
     padding-bottom: 50px;
-    .button-container {
+    .courses-controls {
+        margin-top: 20px;
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
+        justify-content: space-between;
+        align-items: center;
         button {
             background-color: var(--secondary-btn-color);
             border: none;
@@ -18,6 +19,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 1.34375em;
         }
     }
     .mat-card {

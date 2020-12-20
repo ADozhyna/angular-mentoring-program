@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoursesPageComponent } from './components/courses-page/courses-page.component';
 import { MainRoutingModule } from './main-routing.module';
-import { SearchControlComponent } from './components/search-control/search-control.component';
 import { SharedModule } from '../shared/shared.module';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
@@ -17,8 +15,6 @@ import { DurationComponent } from './components/duration/duration.component';
 
 @NgModule({
   declarations: [
-    CoursesPageComponent,
-    SearchControlComponent,
     CoursesListComponent,
     CourseItemComponent,
     BorderColorDirective,
@@ -36,7 +32,7 @@ import { DurationComponent } from './components/duration/duration.component';
     SharedModule,
   ],
   exports: [
-    CoursesPageComponent,
+    CoursesListComponent,
     AddCoursePageComponent,
   ]
 })

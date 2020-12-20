@@ -4,20 +4,21 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SharedModule } from '../shared/shared.module';
-import { LoginComponent } from './components/login/login.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     LogoComponent,
-    LoginComponent,
     BreadcrumbsComponent,
     NotFoundComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -25,12 +26,18 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SpinnerComponent
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true,
     },
   ]

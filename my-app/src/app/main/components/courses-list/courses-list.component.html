@@ -1,9 +1,18 @@
 <div class="wrapper">
-    <div class="button-container">
-        <button routerLink="new" routerLinkActive="active"><i class="material-icons">add</i>Add course</button>
+  <section class="courses-controls">
+    <div class="courses-controls__search">
+      <mat-form-field appearance="fill">
+        <mat-label>Look for courses</mat-label>
+        <input matInput placeholder="Text to search" [formControl]="searchString" name="inputValue">
+      </mat-form-field>
     </div>
+    <div class="courses-controls__add">
+      <button routerLink="new" routerLinkActive="active"><i class="material-icons">add</i>Add course</button>
+    </div>
+  </section> 
+  <section class="courses-list">
     <ng-container *ngIf="!coursesList.length">
-        <mat-card><mat-card-title>No data. Feel free to add new course</mat-card-title></mat-card>
+      <mat-card><mat-card-title>No data. Feel free to add new course</mat-card-title></mat-card>
     </ng-container>
     <ng-container *ngIf="coursesList">
       <app-course-item *ngFor="let course of coursesList" [course]="course" (remove)="removeCourse($event)"></app-course-item>
@@ -11,4 +20,5 @@
         <button class="load-button" (click)="onLoad()">Load more</button>
       </mat-card>
     </ng-container>
+  </section>
 </div>

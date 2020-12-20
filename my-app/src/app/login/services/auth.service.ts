@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IUser } from '../../shared/models/user-entity.model';
 
@@ -12,7 +12,7 @@ export class AuthService {
   private readonly AUTH_URL: string = 'http://localhost:3004/auth';
   private currentUserToken: string;
 
-  public isAuthenticated: boolean = false;
+  public isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public user: { email: string; password: string; token: string } = {
     email: '',
@@ -27,13 +27,13 @@ export class AuthService {
       .pipe(map((data: {token: string}) => {
         localStorage.setItem('currentUserToken', data.token);
         this.currentUserToken = data.token;
-        this.isAuthenticated = true;
+        this.isAuthenticated.next(true);
         return data;
       }));
   }
 
   public logout(): void {
-    this.isAuthenticated = false;
+    this.isAuthenticated.next(false);
     this.user.email = '';
     this.user.password = '';
     this.user.token = '';
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   public getUserInfo(): Observable<IUser> {
-    return this.http.get<IUser>(`${this.AUTH_URL}/userInfo`);
+    return this.http.post<IUser>(`${this.AUTH_URL}/userInfo`, { token: this.currentUserToken });
   }
 
   public getToken(): string {
