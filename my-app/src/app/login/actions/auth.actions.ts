@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from "@angular/common/http";
 import { Action } from "@ngrx/store";
 import { IUser } from "src/app/shared/models/user-entity.model";
 

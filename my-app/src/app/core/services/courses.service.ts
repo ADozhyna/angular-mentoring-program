@@ -16,7 +16,7 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   public getList(start?: number, count?: number, sort?: string, textFragment?: string): Observable<ICourse[]> {
-    return this.http.get<ICourse[]>(`${this.COURSES_URL}?start=${start || 0}&count=${count || 1}&sort=${sort || 'date'}&textFragment=${textFragment || ''}`);
+    return this.http.get<ICourse[]>(`${this.COURSES_URL}?start=${start || 0}&count=${count || 3}&sort=${sort || 'date'}&textFragment=${textFragment || ''}`);
   }
 
   public createCourse(course: ICourse): Observable<ICourse> {
@@ -31,11 +31,7 @@ export class CoursesService {
     return this.http.patch<ICourse>(`${this.COURSES_URL}/${id}`, newData);
   }
 
-  public removeItem(id: number): Observable<ICourse[]> {
-    return this.http.delete(`${this.COURSES_URL}/${id}`).pipe(
-      switchMap(() => {
-        return this.http.get<ICourse[]>(`${this.COURSES_URL}?start=0&count=3&sort=date`);
-      })
-    );
+  public removeItem(id: number): Observable<any> {
+    return this.http.delete(`${this.COURSES_URL}/${id}`);
   }
 }
