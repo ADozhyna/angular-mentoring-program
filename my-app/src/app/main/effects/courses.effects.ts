@@ -8,6 +8,7 @@ import {
   DeleteCourseAction,
   DELETE_COURSE,
   GetListAction,
+  GET_COURSE_BY_ID,
   LoadCoursesAction,
   LOAD_COURSES,
   LOAD_MORE_COURSES,
@@ -42,8 +43,8 @@ export class CoursesEffects {
       ({ searchCriteria, counter, num }) => this.coursesService.getList(counter, num, 'date', searchCriteria)
         .pipe(
           map((courses) => {
-            const course = courses.slice(0, 1);
-            return new SetCourseAction({ courses: course, searchCriteria })
+            const course: ICourse[] = courses.slice(0, 1);
+            return new SetCourseAction({ courses: course, searchCriteria });
           },
         )
     )
@@ -85,6 +86,20 @@ export class CoursesEffects {
         )
     )
   );
+
+  @Effect()
+  public getCourseById$: Observable<any> = this.actions$.pipe(
+    ofType(GET_COURSE_BY_ID),
+    pluck('payload'),
+    switchMap(
+      ({ id }) => this.coursesService.getItemById(id)
+        .pipe(
+          map((course) => {
+            return new SetCourseAction({ courses: [course] });
+          },
+        )
+    )
+  ));
 
   constructor(
     private actions$: Actions,

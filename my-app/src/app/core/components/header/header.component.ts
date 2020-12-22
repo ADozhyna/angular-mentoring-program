@@ -13,10 +13,10 @@ import { IUser } from 'src/app/shared/models/user-entity.model';
 })
 export class HeaderComponent implements OnInit {
 
-  public currentUser$: Observable<IUser> = this.store.pipe(select(currentUser));
+  public currentUser$: Observable<any> = this.store.pipe(select(currentUser));
   public loginSrc: string = 'assets/login.svg';
   public logOutSrc: string = 'assets/logout.svg';
-  public isLogin$: Observable<boolean> = this.store.pipe(select(isAuthenticated))
+  public isLogin$: Observable<any> = this.store.pipe(select(isAuthenticated));
 
   constructor(private store: Store<AuthState>) { }
 

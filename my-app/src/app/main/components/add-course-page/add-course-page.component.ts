@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
-import { CreateCourseAction, UpdateCourseAction } from '../../actions/courses.actions';
+import { CreateCourseAction, GetByIdAction, UpdateCourseAction } from '../../actions/courses.actions';
+import { coursesSelector } from '../../reducers/courses.reducer';
 
 @Component({
   selector: 'app-add-course-page',
@@ -22,6 +24,8 @@ export class AddCoursePageComponent implements OnInit {
     authors: '',
   };
 
+  public course: Observable<ICourse[]> = this.store.pipe(select(coursesSelector));
+
   public pageTitle: string = 'New course';
 
   constructor(
@@ -33,6 +37,7 @@ export class AddCoursePageComponent implements OnInit {
   public ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params.id) {
+        // this.store.dispatch(new GetByIdAction(Number(params.id))); тут так и не получилось сделать хорошо
         this.coursesService.getItemById(Number(params.id))
           .subscribe(course => {
             this.model = course;
@@ -60,7 +65,7 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   public editCourse(): void {
-    this.store.dispatch(new UpdateCourseAction({ id: this.model.id, course: this.model }))
+    this.store.dispatch(new UpdateCourseAction({ id: this.model.id, course: this.model }));
   }
 
   public cancel(): void {

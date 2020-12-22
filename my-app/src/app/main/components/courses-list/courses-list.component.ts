@@ -46,7 +46,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     this.searchString.valueChanges.subscribe((value) => this.debounceSubject.next(value));
   }
 
-  public loadCourses() {
+  public loadCourses(): void {
     this.store.dispatch(new LoadCoursesAction({ searchCriteria: this.searchString.value }));
   }
 
@@ -67,7 +67,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
   }
 }

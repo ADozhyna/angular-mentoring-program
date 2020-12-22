@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/login/services/auth.service';
 export class AuthGuard implements CanLoad, CanActivate {
   constructor(private store: Store<AuthState>, private router: Router) {}
 
-  private canAuthenticated(): Observable<boolean> {
+  private canAuthenticated(): Observable<any> {
     return this.store
       .pipe(
         select(isAuthenticated),

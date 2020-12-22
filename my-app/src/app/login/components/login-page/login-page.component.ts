@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
   constructor(private store: Store<AuthState>) { }
 
   public login(): void {
-   this.store.dispatch(new LogInAction(this.user))
+   this.store.dispatch(new LogInAction(this.user));
   }
 
   public ngOnInit(): void {

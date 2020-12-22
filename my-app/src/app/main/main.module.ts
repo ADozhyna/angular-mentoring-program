@@ -13,9 +13,9 @@ import { AddCoursePageComponent } from './components/add-course-page/add-course-
 import { DateInputComponent } from './components/date/date-input.component';
 import { DurationComponent } from './components/duration/duration.component';
 import { StoreModule } from '@ngrx/store';
-import { coursesReducer } from './reducers/courses.reducer'
+import { coursesReducer } from './reducers/courses.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { CoursesEffects } from './effects/courses.effects'; 
+import { CoursesEffects } from './effects/courses.effects';
 
 @NgModule({
   declarations: [
