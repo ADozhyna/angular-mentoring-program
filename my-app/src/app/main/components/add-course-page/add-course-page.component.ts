@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -24,6 +25,8 @@ export class AddCoursePageComponent implements OnInit {
     authors: '',
   };
 
+  public courseForm: FormGroup;
+
   public course: Observable<ICourse[]> = this.store.pipe(select(coursesSelector));
 
   public pageTitle: string = 'New course';
@@ -32,9 +35,18 @@ export class AddCoursePageComponent implements OnInit {
     private coursesService: CoursesService,
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store) { }
+    private store: Store,
+    private fb: FormBuilder) { }
 
   public ngOnInit(): void {
+    this.courseForm = this.fb.group({
+      id: Math.floor(Math.random() * (9999 - 1000 + 1)),
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
+      date: ['', [Validators.required, Validators.pattern(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)]],
+      length: ['', Validators.required],
+      authors: [''],
+    })
     this.route.params.subscribe(params => {
       if (params.id) {
         // this.store.dispatch(new GetByIdAction(Number(params.id))); тут так и не получилось сделать хорошо
@@ -59,13 +71,22 @@ export class AddCoursePageComponent implements OnInit {
 
   public addCourse(): void {
     this.model.id = Math.floor(Math.random() * (9999 - 1000 + 1));
-    if (this.model.name && this.model.description && this.model.length && this.model.date) {
-      this.store.dispatch(new CreateCourseAction(this.model));
-    }
+    this.store.dispatch(new CreateCourseAction(this.courseForm.value));
   }
 
   public editCourse(): void {
     this.store.dispatch(new UpdateCourseAction({ id: this.model.id, course: this.model }));
+  }
+
+  public createCustomErrorMatcher(controlName: string) {
+    return {
+      isErrorState: () => {
+        return this.courseForm.controls[controlName].touched && this.courseForm.controls[controlName].invalid;
+      },
+      hasError: (error: string) => {
+        return this.courseForm.controls[controlName].hasError(error);
+      }
+    };
   }
 
   public cancel(): void {

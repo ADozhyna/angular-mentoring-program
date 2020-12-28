@@ -1,31 +1,64 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ICourse } from 'src/app/shared/models/course.model';
+import { Component, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 @Component({
   selector: 'app-date-input',
   templateUrl: './date-input.component.html',
-  styleUrls: ['./date-input.component.scss']
+  styleUrls: ['./date-input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true
+    }
+  ],
 })
-export class DateInputComponent implements OnInit, OnChanges {
+export class DateInputComponent implements ControlValueAccessor, Validator {
 
-  public date: string;
+  public form: FormGroup = new FormGroup({
+    date: new FormControl('')
+  });
 
-  @Input() public model: ICourse;
-  @Output() public updateDate: EventEmitter<string> = new EventEmitter<string>();
+  @Input() public errorMatcher: any;
 
   constructor() { }
 
-  public ngOnInit(): void {
-    this.date = this.model.date;
+  onTouched: () => void;
+  onChanged: (value) => any;
+
+  writeValue(value: any): void {
+    this.form.patchValue({ date: value }, {
+      onlySelf: true,
+      emitEvent: false
+    });
   }
 
-  public ngOnChanges(): void {
-    this.date = this.model.date;
+  registerOnChange(fn: (value: any) => void): void {
+    this.form.valueChanges.subscribe((value) => fn(value.date));
   }
 
-  public emitDate(): void {
-    this.updateDate.emit(this.date);
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    isDisabled ? this.form.disable()
+      : this.form.enable();
+  }
+
+  validate(): ValidationErrors | null {
+    return !this.form.value.length || this.form.value.date.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)
+      ? null
+      : { noRequiredFormat: true }; //не могу понять почему здесь всегда null, даже если матчится строка, в итоге использовала Validators.pattern
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.form.statusChanges.subscribe(fn);
   }
 
 }
