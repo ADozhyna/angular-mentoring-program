@@ -13,13 +13,13 @@ export const GET_COURSE_BY_ID: string = '[Courses] Get Course By Id'
 export class LoadCoursesAction implements Action {
     public readonly type: string = LOAD_COURSES;
 
-    constructor(public payload: {searchCriteria?: string, counter?: number, num?: number  }) {}
+    constructor(public payload: { searchCriteria?: string, counter?: number, num?: number  }) {}
 }
 
 export class LoadMoreCoursesAction implements Action {
     public readonly type: string = LOAD_MORE_COURSES;
 
-    constructor(public payload: {searchCriteria?: string, counter?: number, num?: number }) {}
+    constructor(public payload: { searchCriteria?: string, counter?: number, num?: number }) {}
 }
 
 export class SetCourseAction implements Action {
@@ -59,4 +59,4 @@ export class DeleteCourseAction implements Action {
   constructor(public payload: number) {}
 }
 
-export type CoursesAction = LoadCoursesAction | GetListAction | SetCourseAction | DeleteCourseAction | CreateCourseAction | UpdateCourseAction | GetByIdAction;
+export type CoursesActions = LoadCoursesAction | GetListAction | SetCourseAction | DeleteCourseAction | CreateCourseAction | UpdateCourseAction | GetByIdAction;

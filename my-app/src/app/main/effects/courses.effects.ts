@@ -87,7 +87,7 @@ export class CoursesEffects {
     )
   );
 
-  @Effect()
+  @Effect({ dispatch: false })
   public getCourseById$: Observable<any> = this.actions$.pipe(
     ofType(GET_COURSE_BY_ID),
     pluck('payload'),

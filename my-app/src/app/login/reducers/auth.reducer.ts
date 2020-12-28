@@ -18,18 +18,19 @@ export const initialState: AuthState = {
 };
 
 export function authReducer(state: AuthState = initialState, action: AuthAction): AuthState {
+  const act = action as any;
   switch (action.type) {
     case SET_IS_AUTHENTICATED_ACTION: {
       return {
         ...state,
-        isAuthenticated: action.payload
+        isAuthenticated: act.payload
       };
     }
   
     case SET_USER_ACTION: {
       return {
         ...state,
-        currentUser: action.payload
+        currentUser: act.payload
       };
     }
 
