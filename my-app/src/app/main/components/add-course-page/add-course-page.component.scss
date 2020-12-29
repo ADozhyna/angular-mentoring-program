@@ -47,6 +47,9 @@
             &:hover {
                 background-color: lighten(  #0079AD, 10%);
             }
+            &.disabled {
+                background-color: #c9cbcc;
+            }
         }
     }
 

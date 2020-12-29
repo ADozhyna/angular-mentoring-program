@@ -1,5 +1,4 @@
-<div class="wrapper">
-  <form [formGroup]="courseForm">
+<div class="wrapper" [formGroup]="courseForm">
     <mat-card>
         <mat-card-title>{{ pageTitle }}</mat-card-title> 
         <mat-form-field appearance="fill">
@@ -24,10 +23,10 @@
         </mat-form-field>
         <app-date-input formControlName="date" [errorMatcher]="createCustomErrorMatcher('date')"></app-date-input>
         <app-duration formControlName="length" [errorMatcher]="createCustomErrorMatcher('length')"></app-duration>
+        <app-authors-input formControlName="authors" [errorMatcher]="createCustomErrorMatcher('authors')" [authors]="authors"></app-authors-input>
         <mat-card-actions>
             <button (click)="cancel()">Cancel</button>
-            <button (click)="pageTitle === 'New course' ? addCourse() : editCourse()" [disabled]="courseForm.invalid">Save</button>
+            <button (click)="pageTitle === 'New course' ? addCourse() : editCourse()" [disabled]="courseForm.invalid" [ngClass]="{ disabled: courseForm.invalid }">Save</button>
         </mat-card-actions>
     </mat-card>
-  </form>
 </div>
