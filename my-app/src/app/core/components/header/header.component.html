@@ -1,10 +1,10 @@
 <div class="wrapper">
     <div class="navigation" fxLayout="row" fxLayoutAlign="space-between center">
         <app-logo></app-logo>
-        <div class="user-info" *ngIf="isLogin.value">
+        <div class="user-info" *ngIf="isLogin$ | async">
             <div class="login" fxLayout="row" fxLayoutAlign="space-around center">
                 <img [src]="loginSrc" alt="user login">
-                <div class="user-info__name" *ngIf="currentUser"><span>{{ currentUser.name.first }} {{ currentUser.name.last }}</span></div>
+                <div class="user-info__name" *ngIf="currentUser$ | async as user"><span>{{ user.name.first }} {{ user.name.last }}</span></div>
               </div>
               <div class="logoff" fxLayout="row" fxLayoutAlign="space-around center">
                 <img [src]="logOutSrc" alt="logout">
@@ -12,6 +12,6 @@
               </div>
         </div>
     </div>
-    <app-breadcrumbs *ngIf="isLogin.value"></app-breadcrumbs>
+    <app-breadcrumbs *ngIf="isLogin$ | async"></app-breadcrumbs>
 </div>
 

@@ -1,11 +1,12 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Subject, Subscription } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
-import { CoursesService } from 'src/app/core/services/courses.service';
 import { ICourse } from 'src/app/shared/models/course.model';
+import { DeleteCourseAction, LoadCoursesAction, LoadMoreCoursesAction } from '../../actions/courses.actions';
+import {  coursesSelector } from '../../reducers/courses.reducer';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -16,71 +17,57 @@ import { ModalComponent } from '../modal/modal.component';
   providers: [FilterPipe]
 })
 export class CoursesListComponent implements OnInit, OnDestroy {
-  private count: number = 3;
   private debounceSubject: Subject<string> = new Subject<string>();
 
-  public coursesList: ICourse[] = [];
+  public coursesList: Observable<ICourse[]> = this.store.pipe(select(coursesSelector));
   public searchString: FormControl = new FormControl();
+  public count: number = 4;
 
   public searchSubscription: Subscription;
 
   constructor(
     private filterPipe: FilterPipe,
-    private coursesService: CoursesService,
     private dialog: MatDialog,
+    private store: Store
   ) {}
 
   public ngOnInit(): void {
-    this.coursesService.getList(0, this.count)
-      .subscribe(
-        data => {
-        this.coursesList = data;
-        this.count = this.coursesList.length;
-      },
-        (err: HttpErrorResponse) => console.log(err)
-      );
+    this.store.dispatch(new LoadCoursesAction({}));
 
     this.searchSubscription = this.debounceSubject
       .pipe(
-        filter(value => !value.length || value.length >= 3),
-        debounceTime(500)
+        filter((value) => !value.length || value.length >= 3),
+        debounceTime(1000)
       ).subscribe(() => {
-        this.coursesService.getList(0, this.count, 'date', this.searchString.value)
-          .subscribe(
-            data => {
-              this.coursesList = data;
-              this.count = this.coursesList.length;
-            });
+        this.loadCourses();
+        this.count = 4;
       });
 
     this.searchString.valueChanges.subscribe((value) => this.debounceSubject.next(value));
   }
 
-  public onLoad(): void {
-    this.coursesService.getList(this.count, this.count + 1, 'date', this.searchString.value)
-      .subscribe(
-        data => {
-        const res: ICourse[] = data.slice(0, 1); // это выглядит странно, но на бекенде он не хочет слайсить до заданного значения
-        this.coursesList = this.coursesList.concat(res);
-        this.count = this.coursesList.length;
-      });
+  public loadCourses(): void {
+    this.store.dispatch(new LoadCoursesAction({ searchCriteria: this.searchString.value }));
   }
 
-  public removeCourse(course: ICourse): void {
+  public onLoad(): void {
+    this.store.dispatch(new LoadMoreCoursesAction({ searchCriteria: this.searchString.value, counter: this.count, num: this.count + 1 }));
+    this.count += 1;
+  }
+
+ public removeCourse(course: ICourse): void {
     this.dialog.open(ModalComponent, {
       width: '500px'
     }).afterClosed().subscribe((isConfirmed) => {
       if (isConfirmed) {
         let id: number = course.id;
-        this.coursesService.removeItem(id)
-          .subscribe(data => {
-            this.coursesList = data;
-          });
+        this.store.dispatch(new DeleteCourseAction(id));
+        this.count = 4;
       }
     });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
   }
 }

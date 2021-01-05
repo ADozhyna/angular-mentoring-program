@@ -12,6 +12,10 @@ import { ModalComponent } from './components/modal/modal.component';
 import { AddCoursePageComponent } from './components/add-course-page/add-course-page.component';
 import { DateInputComponent } from './components/date/date-input.component';
 import { DurationComponent } from './components/duration/duration.component';
+import { StoreModule } from '@ngrx/store';
+import { coursesReducer } from './reducers/courses.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CoursesEffects } from './effects/courses.effects';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,8 @@ import { DurationComponent } from './components/duration/duration.component';
     CommonModule,
     MainRoutingModule,
     SharedModule,
+    StoreModule.forFeature('courses', coursesReducer),
+    EffectsModule.forFeature([CoursesEffects]),
   ],
   exports: [
     CoursesListComponent,

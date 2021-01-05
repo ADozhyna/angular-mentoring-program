@@ -14,13 +14,13 @@ export class LoaderInterceptor implements HttpInterceptor {
 
   constructor(private spinnerLoader: SpinnerLoaderService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.spinnerLoader.spinnerShow();
     return next.handle(request)
       .pipe(
         delay(500),
         finalize(() => {
-          this.spinnerLoader.spinnerHide()
+          this.spinnerLoader.spinnerHide();
         }),
         catchError((err: Response) => throwError(err.statusText))
       );
