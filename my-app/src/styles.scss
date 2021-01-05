@@ -28,6 +28,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   caret-color: var(--primary-btn-color) !important;
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.mat-select-arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  color:  rgba(255, 255, 255, 0.8);
+}
+
+.mat-form-field-hide-placeholder .mat-select-placeholder {
+  color:  rgba(255, 255, 255, 0.8) !important;
+  -webkit-text-fill-color: white !important;
+  -webkit-text-stroke-color: white;
+  opacity: 1;
+}
+
+.mat-select-value {
+  color:  rgba(255, 255, 255, 0.8) !important; 
+}
+
 .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: #fff !important;
 }

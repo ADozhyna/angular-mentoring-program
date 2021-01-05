@@ -1,17 +1,17 @@
 <div class="form-wrapper" >
     <form fxLayout="column" [formGroup]="userForm" fxLayoutAlign="flex-start flex-start" (ngSubmit)="login()">
-        <p>Login</p>
+        <p translate>User login</p>
         <mat-form-field appearance="fill">
-            <mat-label>Enter your email</mat-label>
+            <mat-label translate>Username</mat-label>
             <input matInput formControlName="login" name="login">
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Enter your password</mat-label>
+            <mat-label translate>Password</mat-label>
             <input matInput [type]="isPasswordHidden ? 'password' : 'text'" formControlName="password" name="password">
             <button mat-icon-button matSuffix (click)="isPasswordHidden = !isPasswordHidden" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isPasswordHidden">
             <i class="material-icons">{{isPasswordHidden ? 'visibility_off' : 'visibility'}}</i>
             </button>
           </mat-form-field>
-          <button class="submit">Login</button>
+          <button class="submit"><span translate>Login</span></button>
     </form>
 </div>

@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { authReducer } from './reducers/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './effects/auth.effects';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LoginPageComponent],
@@ -16,6 +17,7 @@ import { AuthEffects } from './effects/auth.effects';
     LoginRoutingModule,
     StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([AuthEffects]),
+    TranslateModule.forChild({}),
   ],
   exports: [LoginPageComponent]
 })

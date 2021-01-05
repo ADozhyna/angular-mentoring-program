@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatSelectModule} from '@angular/material/select'
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import {MatChipsModule} from '@angular/material/chips';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule,  
   ],
   exports: [
     FlexLayoutModule,
@@ -40,7 +42,8 @@ import {MatChipsModule} from '@angular/material/chips';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule,
   ]
 })
 export class SharedModule { }

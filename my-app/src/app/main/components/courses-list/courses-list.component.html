@@ -2,23 +2,21 @@
   <section class="courses-controls">
     <div class="courses-controls__search">
       <mat-form-field appearance="fill">
-        <mat-label>Look for courses</mat-label>
+        <mat-label translate>Look for courses</mat-label>
         <input matInput placeholder="Text to search" [formControl]="searchString" name="inputValue">
       </mat-form-field>
     </div>
     <div class="courses-controls__add">
-      <button routerLink="new" routerLinkActive="active"><i class="material-icons">add</i>Add course</button>
+      <button routerLink="new" routerLinkActive="active"><i class="material-icons">add</i><span translate>Add course</span></button>
     </div>
   </section> 
   <section class="courses-list">
-    <ng-container *ngIf="!coursesList">
-      <mat-card><mat-card-title>No data. Feel free to add new course</mat-card-title></mat-card>
-    </ng-container>
     <ng-container *ngIf="coursesList">
-      <app-course-item *ngFor="let course of coursesList | async" [course]="course" (remove)="removeCourse($event)"></app-course-item>
-      <mat-card>
-        <button class="load-button" (click)="onLoad()">Load more</button>
+      <app-course-item #course *ngFor="let course of coursesList | async" [course]="course" (remove)="removeCourse($event)"></app-course-item>
+      <mat-card *ngIf="course">
+        <button class="load-button" (click)="onLoad()"><span translate>Load more</span></button>
       </mat-card>
+      <mat-card *ngIf="!course"><mat-card-title translate="No courses"></mat-card-title></mat-card>
     </ng-container>
   </section>
 </div>

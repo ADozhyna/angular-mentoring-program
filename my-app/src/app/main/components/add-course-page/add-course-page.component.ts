@@ -19,7 +19,7 @@ export class AddCoursePageComponent implements OnInit {
 
   public courseForm: FormGroup;
 
-  public pageTitle: string = 'New course';
+  public pageTitle: string = 'Create';
 
   constructor(
     private coursesService: CoursesService,
@@ -58,9 +58,9 @@ export class AddCoursePageComponent implements OnInit {
             this.courseForm.controls['date'].setValue(`${day}/${month}/${courseDate.getFullYear()}`);
             this.courseForm.controls['authors'].setValue(course.authors);
           });
-        this.pageTitle = 'Edit course';
+        this.pageTitle = 'Edit';
       } else {
-        this.pageTitle = 'New course';
+        this.pageTitle = 'Create';
       }
     });
   }
