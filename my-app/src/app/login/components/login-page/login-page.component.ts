@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LogInAction } from '../../actions/auth.actions';
 import { AuthState } from '../../reducers/auth.reducer';
@@ -11,18 +12,19 @@ import { AuthState } from '../../reducers/auth.reducer';
 export class LoginPageComponent implements OnInit {
 
   public isPasswordHidden: boolean = true;
-  public user: { login: string; password: string } = {
-    login: '',
-    password: '',
-  };
+  public userForm: FormGroup;
 
-  constructor(private store: Store<AuthState>) { }
+  constructor(private store: Store<AuthState>, private fb: FormBuilder) { }
 
   public login(): void {
-   this.store.dispatch(new LogInAction(this.user));
+   this.store.dispatch(new LogInAction(this.userForm.value));
   }
 
   public ngOnInit(): void {
+    this.userForm = this.fb.group({
+      login: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
 }

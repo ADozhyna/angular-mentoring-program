@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { coursesReducer } from './reducers/courses.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CoursesEffects } from './effects/courses.effects';
+import { AuthorsInputComponent } from './components/authors-input/authors-input.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CoursesEffects } from './effects/courses.effects';
     AddCoursePageComponent,
     DateInputComponent,
     DurationComponent,
+    AuthorsInputComponent,
   ],
   imports: [
     CommonModule,

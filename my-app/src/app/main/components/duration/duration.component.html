@@ -1,10 +1,21 @@
-<div class="wrapper">
+<div class="wrapper" [formGroup]="form">
     <mat-form-field appearance="fill">
         <mat-label>Duration:</mat-label>
-        <input matInput required name="duration" [(ngModel)]="duration" (change)="emitDuration()">
+        <input
+          matInput
+          name="length"
+          (blur)="onTouched()"
+          [errorStateMatcher]="errorMatcher"
+          formControlName="length">
+          <mat-error *ngIf="errorMatcher.hasError('required')">
+            <span>The field is required</span>
+          </mat-error>
+          <mat-error *ngIf="errorMatcher.hasError('notInteger')">
+            <span>Duration value is invalid</span>
+          </mat-error>
     </mat-form-field>
-    <ng-container *ngIf="duration">
-        <p>{{ duration | duration}}</p>
+    <ng-container *ngIf="form.value.length">
+        <p>{{ form.value.length | duration}}</p>
     </ng-container>
 </div>
 
