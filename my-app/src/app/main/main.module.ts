@@ -17,6 +17,7 @@ import { coursesReducer } from './reducers/courses.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CoursesEffects } from './effects/courses.effects';
 import { AuthorsInputComponent } from './components/authors-input/authors-input.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AuthorsInputComponent } from './components/authors-input/authors-input.
     SharedModule,
     StoreModule.forFeature('courses', coursesReducer),
     EffectsModule.forFeature([CoursesEffects]),
+    TranslateModule.forChild({}),
   ],
   exports: [
     CoursesListComponent,

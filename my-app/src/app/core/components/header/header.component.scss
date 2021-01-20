@@ -8,7 +8,20 @@
     .navigation {
         max-width: 1110px;
         width: 100%;
-        margin: 0 auto;   
+        margin: 0 auto;
+
+        .controls {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .lang-dropdown {
+              margin-left: 25px;
+              .mat-select-placeholder {
+                color: var(--header-text-color) !important;
+              }
+            }
+        }
+
     }
     .user-info {
       display: flex;

@@ -8,8 +8,8 @@
         </mat-card-subtitle>
         <mat-card-content> {{ course.description }}</mat-card-content>
         <mat-card-actions>
-            <button [routerLink]="[course.id]" routerLinkActive="active"><i class="material-icons">edit</i>Edit</button>
-            <button class="delete-button" (click)="onRemove()"><i class="material-icons">delete</i>Delete</button>
+            <button [routerLink]="[course.id]" routerLinkActive="active"><i class="material-icons">edit</i><span translate>Edit</span></button>
+            <button class="delete-button" (click)="onRemove()"><i class="material-icons">delete</i><span translate>Delete</span></button>
         </mat-card-actions>
     </mat-card>
   </ng-container>

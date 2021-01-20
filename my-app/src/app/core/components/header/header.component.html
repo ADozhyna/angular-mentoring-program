@@ -1,6 +1,18 @@
 <div class="wrapper">
     <div class="navigation" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="controls">
         <app-logo></app-logo>
+        <mat-form-field class="lang-dropdown">
+          <mat-select placeholder="{{ 'Choose language'| translate}}" [formControl]="chooseLangFormControl" (selectionChange)="changeLang($event.value)">
+            <mat-option value="en">
+              <span translate>English</span>
+            </mat-option>
+            <mat-option value="ru">
+              <span translate>Russian</span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
         <div class="user-info" *ngIf="isLogin$ | async">
             <div class="login" fxLayout="row" fxLayoutAlign="space-around center">
                 <img [src]="loginSrc" alt="user login">
@@ -8,7 +20,7 @@
               </div>
               <div class="logoff" fxLayout="row" fxLayoutAlign="space-around center">
                 <img [src]="logOutSrc" alt="logout">
-                <button (click)="logOut()">Log off</button>
+                <button (click)="logOut()"><span translate>Log Off</span></button>
               </div>
         </div>
     </div>

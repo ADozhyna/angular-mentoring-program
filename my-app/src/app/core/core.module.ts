@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
   imports: [
     CommonModule,
     SharedModule,
+    TranslateModule.forChild({}),
   ],
   exports: [
     HeaderComponent,

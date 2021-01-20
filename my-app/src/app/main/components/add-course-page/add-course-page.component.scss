@@ -19,6 +19,9 @@
         display: flex;
         flex-direction: column;
         padding: 20px;
+        .mat-label {
+            text-align: left;
+        }
         .mat-card-actions {
             display: flex;
             justify-content: flex-end;
